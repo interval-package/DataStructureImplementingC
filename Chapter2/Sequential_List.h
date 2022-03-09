@@ -28,7 +28,7 @@ void sqListPushBack(SequentialList *La,ELEMENT_TYPE tar);
 int compare_basic_int(ELEMENT_TYPE elem_1,ELEMENT_TYPE elem_2);
 void LocateEveryElements(SequentialList *La, SequentialList *Lb,
                          ELEMENT_TYPE,int(*compare_int)(ELEMENT_TYPE,ELEMENT_TYPE));
-ELEMENT_TYPE CalcRepetitionMaxOnly(SequentialList *La,int(*compare_int)(ELEMENT_TYPE,ELEMENT_TYPE));
+int CalcRepetitionMaxOnly(SequentialList *La,int(*compare_int)(ELEMENT_TYPE,ELEMENT_TYPE));
 void CalcDatumRepetitionMax(SequentialList*,SequentialList*,int(*compare_int)(ELEMENT_TYPE, ELEMENT_TYPE));
 int LocateFirstElem_LowEndSentry(SequentialList *La,ELEMENT_TYPE tar,
                                  int(*compare_int)(ELEMENT_TYPE,ELEMENT_TYPE));
@@ -79,7 +79,7 @@ void sqListInsert(SequentialList *La,int pos,ELEMENT_TYPE tar){
         return;
     }
     if(IS_FULL_SQLIST(La)){
-        sqListIncrease(La,1);
+        (void)sqListIncrease(La,1);
     }
     int end = La->elementCount+1;
 // 逆向移开元素
@@ -93,7 +93,7 @@ void sqListInsert(SequentialList *La,int pos,ELEMENT_TYPE tar){
 
 void sqListPushBack(SequentialList *La,ELEMENT_TYPE tar){
     if(IS_FULL_SQLIST(La)){
-        sqListIncrease(La,1);
+        (void)sqListIncrease(La,1);
     }
     La->elementArray[++(La->elementCount)] = tar;
 }
@@ -107,9 +107,9 @@ void LocateEveryElements(SequentialList *La, SequentialList *Lb,
                          ELEMENT_TYPE  tar,
                          int(*compare_int)(ELEMENT_TYPE,ELEMENT_TYPE))
 {
-//    Lb should be an empty sqlist
+//    Lb should be an empty sqList
     if(Lb->elementCount == 0){
-        perror("the Lb should be an empty sqlist, please configure and retry");
+        perror("the Lb should be an empty sqList, please configure and retry");
         return;
     }
 //    这里先把Element type默认为int了，要是做类型模板C语言很麻烦
@@ -119,13 +119,13 @@ void LocateEveryElements(SequentialList *La, SequentialList *Lb,
     }
 }
 
-ELEMENT_TYPE CalcRepetitionMaxOnly(SequentialList *La,int(*compare_int)(ELEMENT_TYPE,ELEMENT_TYPE)){//    对线性表进行排序，变成有序表
+int CalcRepetitionMaxOnly(SequentialList *La,int(*compare_int)(ELEMENT_TYPE,ELEMENT_TYPE)){//    对线性表进行排序，变成有序表
     SortSqlist(La,compare_int);
     int temp = 0, tar = 0;
     for(int i=1,count=0;i<La->elementCount;i++){
         count++;
 //        当前与下一个元素进行对比，如果相同，compare返回0，则计数加一
-        if(compare_int(La->elementArray[i],La->elementArray[i+1])){
+        if((bool)compare_int(La->elementArray[i],La->elementArray[i+1])){
 //            如果与下一元素不相同，则count与temp进行比较，如果count>temp，则用count赋值temp
             if(count>temp){
                 temp=count;
@@ -137,34 +137,27 @@ ELEMENT_TYPE CalcRepetitionMaxOnly(SequentialList *La,int(*compare_int)(ELEMENT_
         count++;
         }
     }
-    return La->elementArray[tar];
+//    用0号位放目标元素的值
+    La->elementArray[0] = La->elementArray[tar]
+    return temp;
 }
 
 void CalcDatumRepetitionMax(SequentialList *La,SequentialList *Lb,int(*compare_int)(ELEMENT_TYPE,ELEMENT_TYPE))
 {
-//    现在有的问题就是，只能找出一个最大的，要怎么找出所有最大的数
-//    Lb should be an empty sqlist
+    //    Lb should be an empty sqList
     if(Lb->elementCount == 0){
-        perror("the Lb should be an empty sqlist, please configure and retry");
+        perror("the Lb should be an empty sqList, please configure and retry");
         return;
     }
-//    对线性表进行排序，变成有序表
-    SortSqlist(La,compare_int);
-    int temp = 0, tar = 0;
-    for(int i=1,count=0;i<La->elementCount;i++){
-        count++;
-//        当前与下一个元素进行对比，如果相同，compare返回0，则计数加一
-        if(compare_int(La->elementArray[i],La->elementArray[i+1])){
-//            如果与下一元素不相同，则count与temp进行比较，如果count>temp，则用count赋值temp
-            if(count>temp){
-                temp=count;
-//                将该连续元素的位置记录
-                tar = i;
-            }
-//            count清0
-            count=0;
-        }else{
-            count++;
+//    现在有的问题就是，只能找出一个最大的，要怎么找出所有最大的数
+    int window = CalcRepetitionMaxOnly(La,compare_int);
+// 由上面的算法，我们可以得到最多数量的元素的数量,同时也对La完成了排序
+// 将其设置为窗口长度，从线性表一端滑动到结尾，步长为1，如果窗口开始和结尾相同，那么窗口中元素为目标元素
+    int i = 1;
+    while(i+window-1<=La->elementCount){
+        if(La->elementArray[i]==La->elementArray[i+window-1]){
+            sqListPushBack(Lb,La->elementArray[i]);
+            i++;
         }
     }
 }
@@ -176,7 +169,7 @@ int LocateFirstElem_LowEndSentry(SequentialList *La,ELEMENT_TYPE tar,int(*compar
 // 初始化哨兵0位
     La->elementArray[0] = tar;
     int i = La->elementCount;
-    while(compare_int(tar,*pArray--))--i;
+    while((bool)compare_int(tar,*pArray--))--i;
     return i;
 }
 
