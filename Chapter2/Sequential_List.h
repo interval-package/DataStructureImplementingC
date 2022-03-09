@@ -9,7 +9,8 @@
 
 #define INIT_LEN 100
 #define INCREMENT 10
-typedef int ELEMENT_TYPE
+typedef ELEMENT_TYPE int;
+
 typedef struct {
     ELEMENT_TYPE *elementArray;
     int elementCount;
@@ -32,7 +33,7 @@ int SequentialListInit(SequentialList *La){
 }
 
 int SequentialListDestruct(SequentialList *La){
-    if(!free(La->elementArray)){
+    if(free(La->elementArray)){
         perror("free elementArray failed");
         return 0;
     }
@@ -49,7 +50,7 @@ int sqListIncrease(SequentialList *La, int times){
     ELEMENT_TYPE *tempPointer = (*ELEMENT_TYPE)realloc(La->elementArray,
                                          (La->totalElemSize+1+times*INCREMENT)*sizeof(ELEMENT_TYPE));
     if(tempPointer == NULL){
-        perror("increase failed")
+        perror("increase failed");
         return 0;
     }
     La->elementArray = tempPointer;
@@ -62,12 +63,13 @@ int sqListInsert(SequentialList *La,int pos,ELEMENT_TYPE tar){
         perror("argument pos overflow");
         return -1;
     }
-    if(IS_FULL_SQLIST(La->elementArray)){
+    if(IS_FULL_SQLIST(La)){
         sqListIncrease(La,1);
     }
     int end = La->elementCount;
     while(end > pos){
 
+        end--;
     }
 }
 
