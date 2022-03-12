@@ -11,4 +11,4 @@
 ## 2.sequential List
 ### 
 #### 
-## 3. 
+## 3.Linked List

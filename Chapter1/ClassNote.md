@@ -10,6 +10,8 @@
 ### 递归处理
 #### 1.如何计算
 #### 2.Remember that n+(n-1)+... equals the n^2 order
+1.master method
+2.regression tree
 ### 查找算法优化
 #### 1.用次数作为权重
 #### 2.将最新使用的放到最上面
