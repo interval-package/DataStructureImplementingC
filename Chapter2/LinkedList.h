@@ -9,7 +9,10 @@
 #include <errno.h>
 typedef int ELEMENT_TYPE;
 typedef struct lNode{
-    ELEMENT_TYPE data;
+    union {
+        ELEMENT_TYPE data;
+        int len;
+    };
     struct lNode* next;
 } lNode, *linkedList;
 
@@ -17,14 +20,14 @@ linkedList lListInit(){
     lNode *p = (lNode*)malloc(sizeof(lNode));
     if(!p)abort();
     p->next = NULL;
-    p->data = 0;
+    p->len = 0;
     return p;
 }
 
 linkedList lListInitByLen(int len){
     lNode *p = (lNode*)malloc(sizeof(lNode));
     if(!p)abort();
-    p->data = len;
+    p->len = len;
     lNode *r = p;
     int i = 1;
     while(i<=len){
@@ -57,7 +60,7 @@ void lListDestroy(linkedList *lk){
 }
 
 ELEMENT_TYPE lListGetElem(linkedList l,int pos){
-    if(pos>l->data)abort();
+    if(pos>l->len)abort();
     int i=1;
     while(i<pos){
         l=l->next;
@@ -86,7 +89,7 @@ void lListInsertById(linkedList p, int pos,ELEMENT_TYPE item){
         perror("exceed boundary");
         abort();
     }
-    p->data++;
+    p->len++;
     for(int i=1;i<=pos;i++){
         p = p->next;
     }
@@ -106,7 +109,7 @@ void deleteById(linkedList p,int pos){
         perror("exceed bound");
         return;
     }
-    p->data--;
+    p->len--;
     int i=1;
     while(i<pos){
         p=p->next;

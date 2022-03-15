@@ -1,0 +1,30 @@
+//
+// Created by Zza on 2022/3/15.
+//
+
+#ifndef DATASTRUCTUREIMPLEMENTINGC_STATICLINKEDLISK_H
+#define DATASTRUCTUREIMPLEMENTINGC_STATICLINKEDLISK_H
+
+#include <stdlib.h>
+typedef int ELEMENT_TYPE;
+
+typedef struct StaticListNode{
+    int len;
+    int cursor;
+} slNode;
+
+typedef struct StaticList{
+    int avail;
+    int len;
+    slNode *sList;
+} sList;
+
+sList sListCreate(int size){
+    sList result;
+    result.len = size;
+    result.avail = 0;
+    result.sList = (slNode*)malloc(sizeof(slNode)*(size+1));
+    return result;
+}
+
+#endif //DATASTRUCTUREIMPLEMENTINGC_STATICLINKEDLISK_H

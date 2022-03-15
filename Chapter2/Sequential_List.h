@@ -5,6 +5,8 @@
 #ifndef DATASTRUCTUREIMPLEMENTINGC_SEQUENTIAL_LIST_H
 #define DATASTRUCTUREIMPLEMENTINGC_SEQUENTIAL_LIST_H
 
+#include <error.h>
+#include <stdlib.h>
 #define INIT_LEN 100
 #define INCREMENT 10
 typedef int ELEMENT_TYPE;
@@ -123,7 +125,7 @@ int CalcRepetitionMaxOnly(SequentialList *La,int(*compare_int)(ELEMENT_TYPE,ELEM
     for(int i=1,count=0;i<La->elementCount;i++){
         count++;
 //        当前与下一个元素进行对比，如果相同，compare返回0，则计数加一
-        if((bool)compare_int(La->elementArray[i],La->elementArray[i+1])){
+        if(compare_int(La->elementArray[i],La->elementArray[i+1])){
 //            如果与下一元素不相同，则count与temp进行比较，如果count>temp，则用count赋值temp
             if(count>temp){
                 temp=count;
@@ -136,7 +138,7 @@ int CalcRepetitionMaxOnly(SequentialList *La,int(*compare_int)(ELEMENT_TYPE,ELEM
         }
     }
 //    用0号位放目标元素的值
-    La->elementArray[0] = La->elementArray[tar]
+    La->elementArray[0] = La->elementArray[tar];
     return temp;
 }
 
@@ -167,7 +169,7 @@ int LocateFirstElem_LowEndSentry(SequentialList *La,ELEMENT_TYPE tar,int(*compar
 // 初始化哨兵0位
     La->elementArray[0] = tar;
     int i = La->elementCount;
-    while((bool)compare_int(tar,*pArray--))--i;
+    while(compare_int(tar,*pArray--))--i;
     return i;
 }
 
