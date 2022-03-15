@@ -5,6 +5,7 @@
 #ifndef DATASTRUCTUREIMPLEMENTINGC_LINKEDLIST_H
 #define DATASTRUCTUREIMPLEMENTINGC_LINKEDLIST_H
 
+#include <stdlib.h>
 #include <errno.h>
 typedef int ELEMENT_TYPE;
 typedef struct lNode{
@@ -14,7 +15,7 @@ typedef struct lNode{
 
 linkedList lListInit(){
     lNode *p = (lNode*)malloc(sizeof(lNode));
-    if(!p)abort(1);
+    if(!p)abort();
     p->next = NULL;
     p->data = 0;
     return p;
@@ -22,18 +23,20 @@ linkedList lListInit(){
 
 linkedList lListInitByLen(int len){
     lNode *p = (lNode*)malloc(sizeof(lNode));
-    if(!p)abort(1);
+    if(!p)abort();
     p->data = len;
     lNode *r = p;
     int i = 1;
     while(i<=len){
         r->next = (lNode*)malloc(sizeof(lNode));
         r = r->next;
+        i++;
     }
     r->next = NULL;
     return p;
 }
 
+// destroy func should be cautious about the wild pointer
 void lListDestroyRegress(linkedList l) {
     if(l == NULL){
         return;
@@ -41,6 +44,26 @@ void lListDestroyRegress(linkedList l) {
         lListDestroyRegress(l->next);
         free(l);
     }
+}
+
+void lListDestroy(linkedList *lk){
+    lNode *temp = NULL, *l=*lk;
+    while(l){
+        temp = l->next;
+        free(l);
+        l = temp;
+    }
+    *lk = NULL;
+}
+
+ELEMENT_TYPE lListGetElem(linkedList l,int pos){
+    if(pos>l->data)abort();
+    int i=1;
+    while(i<pos){
+        l=l->next;
+        i++;
+    }
+    return l->next->data;
 }
 
 void lListInsertRear(lNode *p, ELEMENT_TYPE item){
@@ -61,20 +84,37 @@ void lListInsertPrior(lNode *p, ELEMENT_TYPE item){
 void lListInsertById(linkedList p, int pos,ELEMENT_TYPE item){
     if(pos>p->data){
         perror("exceed boundary");
-
-        abort(1);
+        abort();
     }
+    p->data++;
     for(int i=1;i<=pos;i++){
         p = p->next;
     }
     lListInsertRear(p, item);
 }
 
+// It's a dangerous action without len change
 void deleteRearByNode(lNode *p){
     if(!p->next)return;
     lNode *r = (p->next)->next;
     free(p->next);
 }
+
+// Delete the node in the pos
+void deleteById(linkedList p,int pos){
+    if(pos<0||pos>p->data){
+        perror("exceed bound");
+        return;
+    }
+    p->data--;
+    int i=1;
+    while(i<pos){
+        p=p->next;
+        i++;
+    }
+    deleteRearByNode(p);
+}
+
 
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_LINKEDLIST_H
