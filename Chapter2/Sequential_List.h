@@ -19,21 +19,32 @@ typedef struct {
 
 // declare
 #define IS_FULL_SQLIST(p) (p)->elementCount==(p)->totalElemSize
+
 #define IS_EMPTY_SQLIST(p) (P)->elementCount==0
+
 int SequentialListInit(SequentialList *La);
+
 int SequentialListDestruct(SequentialList *La);
+
 int sqListIncrease(SequentialList *La, int times);
+
 void sqListInsert(SequentialList *La,int pos,ELEMENT_TYPE tar);
+
 void sqListPushBack(SequentialList *La,ELEMENT_TYPE tar);
+
 int compare_basic_int(ELEMENT_TYPE elem_1,ELEMENT_TYPE elem_2);
+
 void LocateEveryElements(SequentialList *La, SequentialList *Lb,
                          ELEMENT_TYPE,int(*compare_int)(ELEMENT_TYPE,ELEMENT_TYPE));
+
 int CalcRepetitionMaxOnly(SequentialList *La,int(*compare_int)(ELEMENT_TYPE,ELEMENT_TYPE));
+
 void CalcDatumRepetitionMax(SequentialList*,SequentialList*,int(*compare_int)(ELEMENT_TYPE, ELEMENT_TYPE));
+
 int LocateFirstElem_LowEndSentry(SequentialList *La,ELEMENT_TYPE tar,
                                  int(*compare_int)(ELEMENT_TYPE,ELEMENT_TYPE));
-void SortSqlist(SequentialList *La,int(*compare_int)(ELEMENT_TYPE,ELEMENT_TYPE));
 
+void SortSqlist(SequentialList *La,int(*compare_int)(ELEMENT_TYPE,ELEMENT_TYPE));
 
 // define
 int SequentialListInit(SequentialList *La){

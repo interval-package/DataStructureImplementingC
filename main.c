@@ -1,9 +1,15 @@
 #include <stdio.h>
-#include "Chapter1/StuFavouredPolicy.h"
+#include "Chapter2/DoublylinkedList.h"
+
+struct testUnion{
+    union {
+        int len;
+        double data;
+    };
+    int *next;
+};
 
 int main(){
-    stu stuArr[MAX_STU_LEN];
-    groupInit(stuArr,MAX_STU_LEN);
-    StuFavoredPolicyCertification(stuArr,MAX_STU_LEN);
+    DuNode d1;
     return 0;
 }
