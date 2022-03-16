@@ -27,6 +27,8 @@ DuList InitList();
 
 void DestroyList(DuList);
 
+void ShowListInfo(DuList,int);
+
 // 只是定义一下，还是先不使用了
 int Compare_ByValue();
 int Compare_ByFreq();

@@ -1,15 +1,7 @@
 #include <stdio.h>
-#include "Chapter2/DoublylinkedList.h"
-
-struct testUnion{
-    union {
-        int len;
-        double data;
-    };
-    int *next;
-};
+#include "Chapter2/Questions/SortByAccessFrequency.h"
 
 int main(){
-    DuNode d1;
+    SortByFreq_main();
     return 0;
 }
