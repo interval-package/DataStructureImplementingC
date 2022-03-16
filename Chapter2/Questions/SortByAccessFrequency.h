@@ -23,15 +23,11 @@ struct PosContainer{
     int now;
 };
 
-DuList InitList();
+DuList InitList(ELEMENT_TYPE*,int);
 
 void DestroyList(DuList);
 
 void ShowListInfo(DuList,int);
-
-// 只是定义一下，还是先不使用了
-int Compare_ByValue();
-int Compare_ByFreq();
 
 // 会对原表进行修改
 struct PosContainer AccessElement(DuList, ELEMENT_TYPE);
@@ -39,8 +35,5 @@ struct PosContainer AccessElement(DuList, ELEMENT_TYPE);
 // 不设置输入参数了
 void SortByFreq_main();
 
-// 要有两个链表，一个是访问序列，一个是存储序列
-
-// 想法1：使用被访问的向前移动的思想
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_SORTBYACCESSFREQUENCY_H

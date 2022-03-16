@@ -41,6 +41,7 @@ void DestroyList(DuList l){
 }
 
 void ShowListInfo(DuList la,int axis){
+//    两种方式显示数组的内容
     if(axis){
         printf("value\tfreq\n");
         while (la->rear){
@@ -86,15 +87,13 @@ struct PosContainer AccessElement(DuList p, ELEMENT_TYPE tar){
 
     res.before = i;
 //    摘下p结点
-//    保留元素值
-    DuNode *temp = p;
+    DuNode *temp = p;   // 保留元素值
 //    拆链
     p->prior->rear = p->rear;
-    if(p->rear)p->rear->prior = p->prior;
+    if(p->rear)p->rear->prior = p->prior;   // 不管是插入还是删除都要注意前后结点是否为空
 //    前向遍历
     while(p->prior){
-//        先将指针前移
-        p=p->prior;
+        p=p->prior; // 先将指针前移
         if(p->freq>=temp->freq){
 //            若所指处的的freq比原来值的freq小或者相等，p则指在了前驱上
 //            所有的freq都一定会比头节点的freq大，
@@ -107,22 +106,32 @@ struct PosContainer AccessElement(DuList p, ELEMENT_TYPE tar){
 //    插入
     temp->prior = p;
     temp->rear = p->rear;
-    if(p->rear)p->rear->prior =temp;
+    if(p->rear)p->rear->prior =temp;//    不管是插入还是删除都要注意前后结点是否为空
     p->rear = temp;
     return res;
 }
 
+// 被访问数组的长度
 #define VALUE_LEN 10
+// 访问事件表的长度
 #define REQUEST_TIME 1000
+// 错误数据的数量
+#define BAD_NUMS 2
 
+// 测试用主函数
 void SortByFreq_main(){
     srand((unsigned)time(NULL));
 
+//    初始化数据列表
     int ValueList[VALUE_LEN];
     for(int i=0;i<VALUE_LEN;i++)ValueList[i]=i;
+//    初始化访问列表
     int RequestList[REQUEST_TIME];
     for(int i=0;i<REQUEST_TIME;i++)RequestList[i] = rand()%(VALUE_LEN);
+//    设计超出区间值
+    for(int i=0;i<BAD_NUMS;i++)RequestList[rand()%REQUEST_TIME] = rand()%(VALUE_LEN)+VALUE_LEN;
 
+//    初始化列表
     DuList tar = InitList(ValueList,VALUE_LEN);
 
     struct PosContainer pos;
@@ -130,10 +139,11 @@ void SortByFreq_main(){
     printf("original:\n");
     ShowListInfo(tar,0);
 
-
+//    开始事件测试
     for(int i=0;i<REQUEST_TIME;i++){
         pos = AccessElement(tar,RequestList[i]);
-        if(i%200==0) {
+        if(pos.before<0)printf("\nexceeding at i=%d, with %d\n",i, RequestList[i]);
+        if(i%400==0) {
             printf("\ni:%d pos:%d, %d\n", i, pos.before, pos.now);
             ShowListInfo(tar,0);
         }
