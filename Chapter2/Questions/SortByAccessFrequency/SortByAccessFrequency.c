@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-#include "./SortByAccessFrequency.h"
+#include "SortByAccessFrequency.h"
 
 // 基本算法思想：向后遍历至目标位置，摘下结点，向前遍历，到合适位置插入
 

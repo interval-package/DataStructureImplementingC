@@ -40,14 +40,14 @@ linkedList lListInitByLen(int len){
 }
 
 // destroy func should be cautious about the wild pointer
-void lListDestroyRegress(linkedList l) {
-    if(l == NULL){
-        return;
-    }else{
-        lListDestroyRegress(l->next);
-        free(l);
-    }
-}
+//void lListDestroyRegress(linkedList l) {
+//    if(l == NULL){
+//        return;
+//    }else{
+//        lListDestroyRegress(l->next);
+//        free(l);
+//    }
+//}
 
 void lListDestroy(linkedList *lk){
     lNode *temp = NULL, *l=*lk;
@@ -118,6 +118,8 @@ void deleteById(linkedList p,int pos){
     deleteRearByNode(p);
 }
 
+void Reverse_lList(linkedList *ls){
 
+}
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_LINKEDLIST_H
