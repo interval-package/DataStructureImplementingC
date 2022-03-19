@@ -186,17 +186,20 @@ int LocateFirstElem_LowEndSentry(SequentialList *La,ELEMENT_TYPE tar,int(*compar
     return i;
 }
 
+
+// insert x question
 void InsertInto_OrderedList(SequentialList *la, ELEMENT_TYPE tar){
 //    我们认为la已经是一个，排好序，从小到大的列表了
     int upBound =  la->elementCount, lowBound = 1, temp;
     while(upBound != lowBound){
-        temp = la->elementArray[(upBound+lowBound)/2];
-        if(temp<tar){
+        temp = upBound+lowBound)/2;
+        if(la->elementArray[temp]<tar){
             lowBound = temp;
         } else{
             upBound = temp;
         }
     }
+    sqListInsert(la,temp,tar);
 }
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_SEQUENTIAL_LIST_H

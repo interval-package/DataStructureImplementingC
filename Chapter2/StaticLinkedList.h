@@ -9,10 +9,7 @@
 typedef int ELEMENT_TYPE;
 
 typedef struct StaticListNode{
-    union{
-        int data;
-        int spare_cursor;
-    };
+    int len;
     int cursor;
 } slNode;
 
@@ -24,17 +21,9 @@ typedef struct StaticList{
 
 sList sListCreate(int size){
     sList result;
-    result.len = 0;
-    result.avail = size;
-//    多设置一位头结点
+    result.len = size;
+    result.avail = 0;
     result.sList = (slNode*)malloc(sizeof(slNode)*(size+1));
-//    设置cursor为-1,表示还没有下一位
-    result.sList[0].cursor=-1;
-    result.sList[0].spare_cursor=size;
-//    空闲链表的指针应当从尾部开始
-    for(int i=1;i<=size;i++){
-        result.sList[i].spare_cursor=i-1;
-    }
     return result;
 }
 

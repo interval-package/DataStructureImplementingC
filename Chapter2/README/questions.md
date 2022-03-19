@@ -15,6 +15,9 @@
 ### 1.Reverse a single linked list
 ### 2.Insert X
 Insert X into an ordered list, and maintain it as before
+
+
+in the Sequential list
 ### 3.Right delete in a circular linked list
 Delete an element on the right side of a circular linked list
 ### 4.First delete of X

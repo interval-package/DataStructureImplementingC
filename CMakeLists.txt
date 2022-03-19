@@ -13,4 +13,4 @@ add_executable(
         Chapter2/Questions/SortByAccessFrequency/SortByAccessFrequency.h Chapter2/Questions/SortByAccessFrequency/SortByAccessFrequency.c
 
 
-        Chapter3/Stack.h Chapter2/Cricular_Linked_List.h)
+        Chapter3/Stack.h Chapter2/Cricular_Linked_List.h "Chapter2/Questions/Josephs problem/JosephsProblem.h" Chapter2/Questions/CityManagement/CityManageMent.h)
