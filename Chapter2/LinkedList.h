@@ -118,8 +118,22 @@ void deleteById(linkedList p,int pos){
     deleteRearByNode(p);
 }
 
-void Reverse_lList(linkedList *ls){
+void Reverse_lList(linkedList p0){
+//    我们认为是有头结点的，p0为头节点指针
 
+//    设置新的头节点
+    lNode *temp, newHead;
+    newHead.next = NULL;
+
+    while (p0->next){
+//        从原来的链表上摘下结点
+        temp = p0->next;
+        p0->next = temp->next;
+//  把摘下结点头插到新的链表上
+        temp->next = newHead.next;
+        newHead.next = temp;
+    }
+    p0->next = newHead.next;
 }
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_LINKEDLIST_H

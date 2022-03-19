@@ -17,24 +17,27 @@ typedef struct Circular_LNode{
 
 // 初始化
 clList Circular_List_Create(){
-    clList rearNode = (clList)malloc(sizeof(clNode));
-    rearNode->next = rearNode;
-    rearNode->len = 0;
-    return rearNode;
+    clList headNode = (clList)malloc(sizeof(clNode));
+    headNode->next = headNode;
+    headNode->len = 0;
+    return headNode;
 }
 
 void Destroy_clList(clList cll){
 
 }
 
-void clList_HeadInsert(clList cll, ELEMENT_TYPE data){
+// 循环链表都是用尾指针来表示链表
+void clList_RearInsert(clList *cll, ELEMENT_TYPE data){
     clList temp = (clList)malloc(sizeof(clNode));
     temp->data = data;
-    temp->next = cll->next;
-    cll->next = temp;
-    cll->len++;
+    temp->next = (*cll)->next;
+    (*cll)->next = temp;
+    temp->next->len++;
+    cll = &temp;
 }
 
+//
 ELEMENT_TYPE clList_Pop(clList cll){
     if(cll->next == cll){
         abort();

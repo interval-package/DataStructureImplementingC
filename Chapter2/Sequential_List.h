@@ -46,6 +46,8 @@ int LocateFirstElem_LowEndSentry(SequentialList *La,ELEMENT_TYPE tar,
 
 void SortSqlist(SequentialList *La,int(*compare_int)(ELEMENT_TYPE,ELEMENT_TYPE));
 
+//================================================================================================
+
 // define
 int SequentialListInit(SequentialList *La){
 // 在初始化时使用n+1个元素，0号位存放哨兵元素
@@ -182,6 +184,19 @@ int LocateFirstElem_LowEndSentry(SequentialList *La,ELEMENT_TYPE tar,int(*compar
     int i = La->elementCount;
     while(compare_int(tar,*pArray--))--i;
     return i;
+}
+
+void InsertInto_OrderedList(SequentialList *la, ELEMENT_TYPE tar){
+//    我们认为la已经是一个，排好序，从小到大的列表了
+    int upBound =  la->elementCount, lowBound = 1, temp;
+    while(upBound != lowBound){
+        temp = la->elementArray[(upBound+lowBound)/2];
+        if(temp<tar){
+            lowBound = temp;
+        } else{
+            upBound = temp;
+        }
+    }
 }
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_SEQUENTIAL_LIST_H
