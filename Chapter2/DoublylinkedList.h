@@ -19,7 +19,27 @@ typedef struct DoublyLinkedListNode{
 DuList DuListCreate(){
     DuList tar = (DuList)malloc(sizeof(DuNode));
     tar->len = 0;
+    tar->prior = NULL;
+    tar->rear = NULL;
     return tar;
 }
+
+void DuListDestruct(DuList l){
+    DuList temp;
+    while(l){
+        temp = l->rear;
+        free(l);
+        l = temp;
+    }
+}
+
+void DuListFirstDelete(DuList l){
+    DuList temp = l->rear;
+    if(!temp)return;
+    l->rear = temp->rear;
+    temp->rear->prior = l;
+    free(temp);
+}
+
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_DOUBLYLINKEDLIST_H

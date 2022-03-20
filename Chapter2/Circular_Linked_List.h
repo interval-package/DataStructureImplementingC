@@ -23,6 +23,20 @@ clList Circular_List_Create(){
     return headNode;
 }
 
+clList clListInit(int len){
+//    设置头结点
+    clList temp, head, p = (clList)malloc(sizeof(clNode));
+    head = p;
+    for(int i=0; i<len; i++){
+        temp = (clList)malloc(sizeof(clNode));
+        p->next = temp;
+        p = temp;
+    }
+    temp->next = head;
+//    返回的是尾结点
+    return temp;
+}
+
 void Destroy_clList(clList cll){
     clList temp = cll->next;
     cll->next=NULL;
