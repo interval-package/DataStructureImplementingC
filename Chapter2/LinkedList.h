@@ -16,6 +16,10 @@ typedef struct lNode{
     struct lNode* next;
 } lNode, *linkedList;
 
+void deleteRearByNode(lNode*);
+
+//========================================================================
+
 linkedList lListInit(){
     lNode *p = (lNode*)malloc(sizeof(lNode));
     if(!p)abort();
@@ -59,7 +63,26 @@ void lListDestroy(linkedList *lk){
     *lk = NULL;
 }
 
-ELEMENT_TYPE lListGetElem(linkedList l,int pos){
+int isEmpty_byLen(linkedList l){
+    return l->len>0;
+}
+
+int isEmpty_byNext(linkedList l){
+    return l->next != NULL;
+}
+
+int updateLen(linkedList l){
+    int i = 0;
+    linkedList temp = l;
+    while(l->next){
+        i++;
+        l = l->next;
+    }
+    temp->len = i;
+    return i;
+}
+
+ELEMENT_TYPE lListFindElem(linkedList l,int pos){
     if(pos>l->len)abort();
     int i=1;
     while(i<pos){
@@ -67,6 +90,28 @@ ELEMENT_TYPE lListGetElem(linkedList l,int pos){
         i++;
     }
     return l->next->data;
+}
+
+ELEMENT_TYPE lListGetElem(linkedList l,int pos){
+    if(pos>l->len)abort();
+    int i=1;
+    while(i<pos){
+        l=l->next;
+        i++;
+    }
+    i = l->next->data;
+    deleteRearByNode(l);
+    return i;
+}
+
+void ChangeElem(linkedList l,int pos, ELEMENT_TYPE tar){
+    if(pos>l->len)abort();
+    int i=1;
+    while(i<pos){
+        l=l->next;
+        i++;
+    }
+    l->next->data = tar;
 }
 
 void lListInsertRear(lNode *p, ELEMENT_TYPE item){

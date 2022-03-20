@@ -41,5 +41,15 @@ void DuListFirstDelete(DuList l){
     free(temp);
 }
 
+void DuListFirstXDelete(DuList l, ELEMENT_TYPE tar){
+    do{
+        l = l->rear;
+    } while (l && l->data != tar);
+    if(l){
+        l->prior->rear = l->rear;
+        if(l->rear)l->rear->prior = l->prior;
+        free(l);
+    }
+}
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_DOUBLYLINKEDLIST_H

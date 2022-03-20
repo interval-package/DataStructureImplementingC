@@ -72,15 +72,17 @@ ELEMENT_TYPE clList_Pop(clList cll){
     return res;
 }
 
-void right_Delete(clList cll){
-    clList temp = cll;
-    while(temp->next!=cll){
+void right_Delete(clList *cll){
+    if((*cll)->next == *cll){
+        return;
+    }
+    clList temp = *cll;
+    while(temp->next!=(*cll)){
         temp = temp->next;
     }
-    if(temp->next!=cll->next){
-        temp->next = cll->next;
-        free(cll);
-    }
+    temp->next = (*cll)->next;
+    free(*cll);
+    *cll = temp;
 }
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_CRICULAR_LINKED_LIST_H
