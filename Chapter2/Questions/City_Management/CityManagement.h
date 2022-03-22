@@ -115,4 +115,20 @@ void UpdateCity(cityList cl, int id, const char* name, const char* info){
     }
 }
 
+void CityMain(){
+    cityList c = InitCityList();
+    AddCity(c,"cs","NULL");
+    AddCity(c,"c2","NULL");
+    AddCity(c,"cs1","NULL");
+    AddCity(c,"c3","NULL");
+    printf("init:\n");
+    DispCity_All(c);
+    int id = 3;
+    printf("Delete id: %d\n",id);
+    DeleteCity_Id(c,id);
+    UpdateCity(c,2,"happy","not a city");
+    DispCity_All(c);
+    DestructCity(c);
+}
+
 #endif //DATASTRUCTUREIMPLEMENTINGC_CITYMANAGEMENT_H
