@@ -31,6 +31,10 @@ void DestroyStack(sta st){
     free(st);
 }
 
+int isFull(sta st){return st->top == st->len;}
+
+int isEmpty(sta st){return !(st->top);}
+
 void PushBack(sta st, ELEMENT_TYPE obj){
     if(st->top == st->len){
         st->len += INCREMENT;
@@ -59,8 +63,20 @@ ELEMENT_TYPE Pop(sta st){
 
 // =====================================================================================================================
 
-typedef struct Linked_Stack{
-//    有点不想写了
-} lStack, *lStk;
+#include "../Chapter2/LinkedList.h"
+
+// 什么叫代码重复利用
+typedef lNode lStack_N, *lStk;
+
+// 这里只要使用之前定义好的函数就行了
+
+linkedList lListInitByLen(int len);
+void lListDestroy(linkedList *lk);
+int isEmpty_byNext(linkedList l);
+
+// 重新包装，对头节点使用就是入栈了
+void lListInsertRear(lNode *p, ELEMENT_TYPE item);
+void push_lStk(lStk p, ELEMENT_TYPE item){lListInsertRear(p,item);}
+
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_STACK_H

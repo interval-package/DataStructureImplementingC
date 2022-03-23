@@ -64,7 +64,7 @@ void lListDestroy(linkedList *lk){
 }
 
 int isEmpty_byLen(linkedList l){
-    return l->len>0;
+    return l->len==0;
 }
 
 int isEmpty_byNext(linkedList l){
