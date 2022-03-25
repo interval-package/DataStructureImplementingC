@@ -16,6 +16,7 @@ typedef struct lNode{
     struct lNode* next;
 } lNode, *linkedList;
 
+//========================================================================
 
 linkedList lListInit();
 
@@ -49,6 +50,7 @@ void deleteRearByNode(lNode *p);
 void deleteById(linkedList p,int pos);
 
 void Reverse_lList(linkedList p0);
+
 //========================================================================
 
 linkedList lListInit(){
@@ -211,5 +213,14 @@ void Reverse_lList(linkedList p0){
     }
     p0->next = newHead.next;
 }
+
+void Insert_X_Linked(linkedList p0,ELEMENT_TYPE tar){
+    linkedList temp;
+    do{
+        temp = p0;
+        p0 = p0->next;
+    }while(p0 && p0->data>tar);
+    lListInsertRear(temp,tar);
+};
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_LINKEDLIST_H

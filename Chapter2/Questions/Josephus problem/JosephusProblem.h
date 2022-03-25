@@ -13,6 +13,15 @@ typedef struct JosephusCircle{
     struct JosephusCircle *next;
 } *jCircle, jNode;
 
+//=============================================================================
+
+jCircle jCircleInit(int len);
+
+int JosephusProblem(jCircle jc,int step,int pos);
+
+//=============================================================================
+
+
 jCircle jCircleInit(int len){
 //    不设置头结点
     jCircle temp, head, p = (jCircle)malloc(sizeof(jNode));

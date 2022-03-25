@@ -17,6 +17,8 @@ typedef struct {
     int totalElemSize;
 } SequentialList;
 
+
+//================================================================================================
 // declare
 #define IS_FULL_SQLIST(p) (p)->elementCount==(p)->totalElemSize
 
@@ -200,6 +202,11 @@ void InsertInto_OrderedList(SequentialList *la, ELEMENT_TYPE tar){
         }
     }
     sqListInsert(la,temp,tar);
+}
+
+void SqListMain(){
+    SequentialList sl;
+    SequentialListInit(&sl);
 }
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_SEQUENTIAL_LIST_H

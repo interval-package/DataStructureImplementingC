@@ -5,7 +5,11 @@
 #ifndef DATASTRUCTUREIMPLEMENTINGC_STACK_H
 #define DATASTRUCTUREIMPLEMENTINGC_STACK_H
 #include <stdlib.h>
+
+#ifndef ELEMENT_TYPE
 #define ELEMENT_TYPE int
+#endif
+
 #define INIT_SIZE 100
 #define INCREMENT 10
 
@@ -17,12 +21,12 @@ typedef struct Stack_array {
     ELEMENT_TYPE* array;
 } Stack_arr, *sta;
 
-Stack_arr* CreateStack(){
+Stack_arr* CreateStack(int size){
     sta st = (sta) malloc(sizeof(Stack_arr));
-    st->len = INIT_SIZE;
+    st->len = size;
 //    先挖坑，后种萝卜
     st->top = 0;
-    st->array = (ELEMENT_TYPE*)malloc(sizeof(int)*INIT_SIZE);
+    st->array = (ELEMENT_TYPE*)malloc(sizeof(int)*size);
     return st;
 }
 

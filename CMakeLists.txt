@@ -4,10 +4,13 @@ project(DataStructureImplementingC C)
 set(CMAKE_C_STANDARD 99)
 
 add_executable(
+# main
         DataStructureImplementingC main.c
 
+# chapter 1
         Chapter1/StuFavouredPolicy.h
 
+# chapter 2
         Chapter2/Sequential_List.h
         Chapter2/LinkedList.h Chapter2/StaticLinkedList.h Chapter2/DoublylinkedList.h
         Chapter2/Questions/SortByAccessFrequency/SortByAccessFrequency.h
@@ -15,4 +18,7 @@ add_executable(
         Chapter2/Circular_Linked_List.h
         "Chapter2/Questions/Josephus problem/JosephusProblem.h"
         Chapter2/Questions/City_Management/CityManagement.h
-        Chapter3/Stack.h )
+
+# chapter 3
+        Chapter3/Stack.h Chapter3/Queue.h
+        Chapter3/Questions/RPN/RPN.h)

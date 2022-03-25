@@ -40,13 +40,13 @@ void DispCity(cityList c);
 void DispCity_All(cityList c);
 
 // 设计比较函数用于查找时的比对
-int Comp_by_name(city* cl,city* tar);
+int Comp_by_name(city* cl,const char*);
 
-int Comp_by_id(city* cl,city* tar);
+int Comp_by_id(city* cl,int);
 
-cityList FindCity(cityList cl, city *tar,int(*comp)(city*,city*));
+cityList FindCity(cityList cl, const char*tar,int(*comp)(city*,const char*));
 
-void UpdateCity(cityList cl, int id, const char* name, const char* info);
+void UpdateCity_Id(cityList cl, int id, const char* name, const char* info);
 
 // 主函数
 void CityMain();
@@ -86,6 +86,7 @@ void AddCity(cityList cl, const char* name, const char* info){
 }
 
 void DeleteCity_Id(cityList cl, int id){
+//    删除了之后，我们也不会再次对其的id进行再次使用
     do{
         cl = cl->next;
     }
@@ -99,6 +100,10 @@ void DeleteCity_Id(cityList cl, int id){
 }
 
 void DispCity(cityList c){
+    if(!c){
+        printf("city NULL!\n");
+        return;
+    }
     printf("city id\t: %d\n"
            "city name\t: %s\n"
            "city info\t: %s\n",
@@ -113,15 +118,15 @@ void DispCity_All(cityList c){
     }
 }
 
-int Comp_by_name(city* cl,city* tar){
-    return strcmp(cl->name,tar->name);
+int Comp_by_name(city* cl,const char *tar){
+    return strcmp(cl->name,tar);
 }
 
-int Comp_by_id(city* cl,city* tar){
-    return cl->cityId == tar->cityId;
+int Comp_by_info(city* cl,const char *tar){
+    return strcmp(cl->info,tar);
 }
 
-cityList FindCity(cityList cl, city *tar,int(*comp)(city*,city*)){
+cityList FindCity(cityList cl, const char *tar,int(*comp)(city*,const char*)){
 //    comp的结果是真为非0，假为0
 //    返回的是结果的指针
     do{
@@ -131,7 +136,14 @@ cityList FindCity(cityList cl, city *tar,int(*comp)(city*,city*)){
     return cl;
 }
 
-void UpdateCity(cityList cl, int id, const char* name, const char* info){
+cityList FindCity_Id(cityList cl, int tar){
+    do{
+        cl = cl->next;
+    }while(cl && cl->cityId != tar);
+    return cl;
+};
+
+void UpdateCity_Id(cityList cl, int id, const char* name, const char* info){
     do{
         cl = cl->next;
     }
@@ -145,17 +157,25 @@ void UpdateCity(cityList cl, int id, const char* name, const char* info){
 
 void CityMain(){
     cityList c = InitCityList();
-    AddCity(c,"cs","NULL");
-    AddCity(c,"c2","NULL");
-    AddCity(c,"cs1","NULL");
-    AddCity(c,"c3","NULL");
-    printf("init:\n");
+    AddCity(c,"City 1","first city");
+    AddCity(c,"Chang sha","hot city");
+    AddCity(c,"beijing city","capital");
+    AddCity(c,"unnamed","the 4th");
+    printf("init: with 4 example city\n");
     DispCity_All(c);
+
     int id = 3;
-    printf("Delete id: %d\n",id);
+    printf("Delete the city by id: %d\n",id);
+    DispCity(FindCity_Id(c,id));
     DeleteCity_Id(c,id);
-    UpdateCity(c,2,"happy","not a city");
-    DispCity_All(c);
+    DispCity(FindCity_Id(c,id));
+
+    id = 2;
+    printf("Change the info of the %d\n",id);
+    DispCity(FindCity_Id(c,id));
+    UpdateCity_Id(c, id, "happy", "not a city");
+    DispCity(FindCity_Id(c,id));
+
     DestructCity(c);
 }
 
