@@ -7,7 +7,10 @@
 
 #include <stdlib.h>
 #include <errno.h>
+#ifndef ELEM
+#define ELEM
 typedef int ELEMENT_TYPE;
+#endif
 typedef struct lNode{
     union {
         ELEMENT_TYPE data;

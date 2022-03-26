@@ -6,12 +6,14 @@
 #define DATASTRUCTUREIMPLEMENTINGC_STACK_H
 #include <stdlib.h>
 
-#ifndef ELEMENT_TYPE
-#define ELEMENT_TYPE int
-#endif
+//#ifndef ELEMENT_TYPE
+//#define ELEMENT_TYPE int
+//#endif
 
 #define INIT_SIZE 100
 #define INCREMENT 10
+
+typedef int ELEMENT_TYPE;
 
 // =====================================================================================================================
 // 使用数组实现的堆栈

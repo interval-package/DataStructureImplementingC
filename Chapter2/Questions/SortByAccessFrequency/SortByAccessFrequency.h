@@ -5,7 +5,10 @@
 #ifndef DATASTRUCTUREIMPLEMENTINGC_SORTBYACCESSFREQUENCY_H
 #define DATASTRUCTUREIMPLEMENTINGC_SORTBYACCESSFREQUENCY_H
 
+#ifndef ELEM
+#define ELEM
 typedef int ELEMENT_TYPE;
+#endif
 
 // 双链表就可以了，不一定要循环
 typedef struct Container_DoublyLinkedListNode{
