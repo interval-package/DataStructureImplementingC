@@ -9,7 +9,10 @@
 #include <stdlib.h>
 #define INIT_LEN 100
 #define INCREMENT 10
+#ifndef ELEM
+#define ELEM
 typedef int ELEMENT_TYPE;
+#endif
 
 typedef struct {
     ELEMENT_TYPE *elementArray;

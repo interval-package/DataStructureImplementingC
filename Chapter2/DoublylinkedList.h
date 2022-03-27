@@ -6,7 +6,10 @@
 #define DATASTRUCTUREIMPLEMENTINGC_DOUBLYLINKEDLIST_H
 #include <stdlib.h>
 #include <errno.h>
+#ifndef ELEM
+#define ELEM
 typedef int ELEMENT_TYPE;
+#endif
 
 typedef struct DoublyLinkedListNode{
     struct DoublyLinkedListNode *prior, *rear;

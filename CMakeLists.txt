@@ -21,4 +21,4 @@ add_executable(
 
 # chapter 3
         Chapter3/Stack.h Chapter3/Queue.h
-        Chapter3/Questions/RPN/RPN.h)
+        Chapter3/Questions/RPN/RPN.h Chapter3/TwinStack.h Chapter3/Questions/ParenthesesProblem/Parentheses.h)

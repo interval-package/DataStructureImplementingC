@@ -5,7 +5,10 @@
 #ifndef DATASTRUCTUREIMPLEMENTINGC_CRICULAR_LINKED_LIST_H
 #define DATASTRUCTUREIMPLEMENTINGC_CRICULAR_LINKED_LIST_H
 #include <stdlib.h>
+#ifndef ELEM
+#define ELEM
 typedef int ELEMENT_TYPE;
+#endif
 
 typedef struct Circular_LNode{
     union {

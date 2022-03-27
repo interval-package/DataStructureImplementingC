@@ -6,7 +6,10 @@
 #define DATASTRUCTUREIMPLEMENTINGC_STATICLINKEDLIST_H
 
 #include <stdlib.h>
+#ifndef ELEM
+#define ELEM
 typedef int ELEMENT_TYPE;
+#endif
 
 typedef struct StaticListNode{
     int len;
