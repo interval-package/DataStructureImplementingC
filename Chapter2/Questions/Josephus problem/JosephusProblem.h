@@ -48,8 +48,8 @@ int JosephusProblem(jCircle jc,int step,int pos){
     jCircle temp;
     while(jc->next != jc){
 //        进行循环计数
-        count = (count+1)%(step+1);
-        if(count == step) {
+        count = (count+1)%(step);
+        if(count == 0) {
 //            如果计数到达步长,则释放结点
             temp->next = jc->next;
             free(jc);
@@ -73,5 +73,20 @@ int f(int n, int m){
 //新编号new,就编号old,则有old = (new+m)%n.
 //为了补正序号从0开始,old = (new+m-1)%n + 1
 //f(1,m)=1,到达最后只有一个人的时候,结束.
+
+int JosephusProblem_Recur(int n, int start, int step){
+    return (f(n,step) + start - 2) % n + 1;
+}
+
+#include <stdio.h>
+void JosephusProblem_Main(){
+    int n = 20, step = 3, pos = 12;
+    printf("int n = %d, step = %d, pos = %d\n",n,step,pos);
+    jCircle jc = jCircleInit(n);
+    printf("normal: %d,Recur: %d\n",
+           JosephusProblem(jc,step,pos),
+           JosephusProblem_Recur(n,pos,step)
+    );
+}
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_JOSEPHUSPROBLEM_H

@@ -182,11 +182,12 @@ void deleteRearByNode(lNode *p){
     if(!p->next)return;
     lNode *r = (p->next)->next;
     free(p->next);
+    p->next = r;
 }
 
 // Delete the node in the pos
 void deleteById(linkedList p,int pos){
-    if(pos<0||pos>p->data){
+    if(pos<=0||pos>p->data){
         perror("exceed bound");
         return;
     }
@@ -222,8 +223,46 @@ void Insert_X_Linked(linkedList p0,ELEMENT_TYPE tar){
     do{
         temp = p0;
         p0 = p0->next;
-    }while(p0 && p0->data>tar);
+    }while(p0 && p0->data<tar);
     lListInsertRear(temp,tar);
 };
+
+#include <stdio.h>
+
+void DispLinkedList(linkedList obj){
+    printf("\n");
+    while(obj->next){
+        obj = obj->next;
+        printf("%d\t",obj->data);
+    }
+    printf("\n");
+}
+
+void LinkedListMain(){
+    int len = 10;
+    linkedList ls = lListInitByLen(len);
+//    演示修改函数
+    printf("yet not update:");
+    DispLinkedList(ls);
+    for(int i=0;i<len;i++){
+        ChangeElem(ls,i+1,i+1);
+    }
+    printf("updated:");
+    DispLinkedList(ls);
+
+
+    Insert_X_Linked(ls,7);
+    Insert_X_Linked(ls,5);
+    printf("insert:");
+    DispLinkedList(ls);
+
+    printf("reversed:");
+    Reverse_lList(ls);
+    DispLinkedList(ls);
+    
+    printf("deleted");
+    deleteById(ls,6);
+    DispLinkedList(ls);
+}
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_LINKEDLIST_H
