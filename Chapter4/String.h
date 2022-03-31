@@ -63,7 +63,7 @@ int String_Len_Certification(pStr p){
     return i;
 }
 
-void String_Sub(const pStr p, pStr res, int pos, int len){
+void String_Get_Sub(const pStr p, pStr res, int pos, int len){
     String_Clear(res);
     if(pos<0||pos+len>p->len||len>=res->size)return;
     int i=0;
@@ -117,6 +117,26 @@ void String_Connect_Dynamic(pStr p, pStr item){
     }
 }
 
-int String_Compare();
+int String_Compare_Dict(pStr str_1, pStr str_2){
+//    In the order of dictionary, finally the length
+    char* p1 = str_1->str, *p2 = str_2->str;
+    while(*p1 && *p2){
+        if(*p1!=*p2)return *p1-*p2;
+        p1++;p2++;
+    }
+    return str_1->len-str_2->len;
+}
+
+int String_Find_Sub(const pStr source, const pStr tar){
+    int pos = 0;
+    char *p1_self, *p_tar;
+    while(pos+tar->len<source->len){
+        p_tar = tar->str;
+        p1_self = &source->str[pos];
+        while (*p_tar);
+        pos++;
+    };
+    return pos;
+}
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_STRING_H

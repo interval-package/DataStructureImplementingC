@@ -21,4 +21,4 @@ add_executable(
 
 # chapter 3
         Chapter3/Stack.h Chapter3/Queue.h
-        Chapter3/Questions/RPN/RPN.h Chapter3/TwinStack.h Chapter3/Questions/ParenthesesProblem/Parentheses.h Chapter3/QueueImitationByStack.h Chapter3/Questions/HanoiTower/HanoiTower.h Chapter4/String.h "External Problems/findMedianSortedArrays.h")
+        Chapter3/Questions/RPN/RPN.h Chapter3/TwinStack.h Chapter3/Questions/ParenthesesProblem/Parentheses.h Chapter3/QueueImitationByStack.h Chapter3/Questions/HanoiTower/HanoiTower.h Chapter4/String.h "External Problems/findMedianSortedArrays.h" "External Problems/IsMatch_RegulaExpression.h")
