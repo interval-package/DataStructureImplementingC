@@ -127,16 +127,78 @@ int String_Compare_Dict(pStr str_1, pStr str_2){
     return str_1->len-str_2->len;
 }
 
-int String_Find_Sub(const pStr source, const pStr tar){
+// Brute force
+int String_Locate_Sub_Bf(const pStr source, const pStr tar){
     int pos = 0;
     char *p1_self, *p_tar;
     while(pos+tar->len<source->len){
         p_tar = tar->str;
         p1_self = &source->str[pos];
-        while (*p_tar);
+        while (*p_tar){
+
+        };
         pos++;
     };
     return pos;
+}
+
+// head-tail matching
+// compare the first then last
+
+// kmp method (knuth morris pratt)
+// reuse the work, after a failure
+
+void getNext(char * p, int * next)
+{
+    next[0] = -1;
+    int i = 0, j = -1;
+
+    while (i < (int)strlen(p))
+    {
+        if (j == -1 || p[i] == p[j])
+        {
+            ++i;
+            ++j;
+            next[i] = j;
+        }
+        else
+            j = next[j];
+    }
+}
+
+int KMP(char * t, char * p)
+{
+    int i = 0;
+    int j = 0;
+
+    while (i < (int)strlen(t) && j < (int)strlen(p))
+    {
+        if (j == -1 || t[i] == p[j])
+        {
+            i++;
+            j++;
+        }
+        else
+            j = next[j];
+    }
+
+    if (j == strlen(p))
+        return i - j;
+    else
+        return -1;
+}
+
+// bm method
+
+
+void String_Push(pStr source, char tar){
+    source->len++;
+    if(source->len == source->size){
+        source->str = (char*)realloc(source->str,sizeof(char)*(source->size+DYNAMIC_STR_INCREMENT));
+        source->size+=DYNAMIC_STR_INCREMENT;
+    }
+    source->str[source->len-1] = tar;
+    source->str[source->len] = '\0';
 }
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_STRING_H
