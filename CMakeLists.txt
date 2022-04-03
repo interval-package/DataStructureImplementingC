@@ -36,4 +36,4 @@ add_executable(
 #        "External Problems/CanReorderDoubled/CanReorderedDoubled.h"
 #        "External Problems/RomanToInt/RomanToInt.h"
 
-)
+        "External Problems/SleepingBarber/Sleeping_Barber.h")

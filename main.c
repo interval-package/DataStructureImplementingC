@@ -6,8 +6,11 @@
 //#include "Chapter3/Questions/RPN/RPN.h"
 //#include "./Chapter2/LinkedList.h"
 //#include "External Problems/SelfDivide/SelfDivideNumbers.h"
+#include "External Problems/SleepingBarber/Sleeping_Barber.h"
+
 int main(){
 //    JosephusProblem_Main();
 //    printf("%d",isSelfDivide(21));
+    main_barber_problem(0,NULL);
     return 0;
 }
