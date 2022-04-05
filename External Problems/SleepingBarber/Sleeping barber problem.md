@@ -35,7 +35,7 @@ The sleeping_barber Problem:
 - 坐在椅子上以后，就对理发师发出customer_ready的信号，表明自己一直在等待。
 - 等待理发师发出ready的信号，接收到信号以后离开自己的位置去到理发位，修改位置信息。
 
-### Barber process:
+#### Barber process:
 
 - 对于理发师进程，我们基本使用获得-回答的逻辑。
 - 理发师一直在等待顾客发出ready的信号，如果听到了ready的信号且这个时候没有事情，就响应barber_ready信号。也就是听到有一个人说自己好了，就叫一个人过来。
