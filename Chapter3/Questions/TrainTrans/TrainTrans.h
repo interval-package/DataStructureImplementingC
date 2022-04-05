@@ -8,26 +8,22 @@
 #include <stdbool.h>
 #include "../../Stack.h"
 
-bool TrainTrans(int *seq, int len){
+bool TrainTrans(const int *seq, int len){
     sta temp = CreateStack(len);
     bool flag = true;
     int i=1, j=0;
     while(i<=len && j<len){
         if(i<seq[j]){
             PushBack(temp, i++);
-            continue;
         }
-        else if(i == seq[j]){
+        else if(i == seq[j] || Pop(temp) == seq[j]){
             i++;
             j++;
-            continue;
-        }else if(Pop(temp) == seq[j]){
-            i++;
-            j++;
-            continue;
         }
-        flag = false;
-        break;
+        else{
+            flag = false;
+            break;
+        }
     }
     DestroyStack(temp);
     return flag;
