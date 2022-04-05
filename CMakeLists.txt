@@ -25,9 +25,15 @@ add_executable(
 #        Chapter3/Questions/ParenthesesProblem/Parentheses.h
         Chapter3/QueueImitationByStack.h
 #        Chapter3/Questions/HanoiTower/HanoiTower.h
+        Chapter3/Questions/TrainTrans/TrainTrans.h
 
 # chapter 4
         Chapter4/String.h
+
+# chapter 5
+        Chapter5/Arrays.h
+        Chapter5/General_List.h
+        Chapter5/Sparse_Matrix.h
 
 # External Problems
 #        "External Problems/findMedianSortedArrays.h"
@@ -35,5 +41,6 @@ add_executable(
 #        "External Problems/SelfDivideNumbers.h"
 #        "External Problems/CanReorderDoubled/CanReorderedDoubled.h"
 #        "External Problems/RomanToInt/RomanToInt.h"
+#        "External Problems/SleepingBarber/Sleeping_Barber.h"
 
-        "External Problems/SleepingBarber/Sleeping_Barber.h" Chapter3/Questions/TrainTrans/TrainTrans.h)
+)
