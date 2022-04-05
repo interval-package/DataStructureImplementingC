@@ -99,6 +99,7 @@ void String_Copy_Dynamic(pStr tar, pStr source){
     }
 }
 
+__attribute__((unused))
 void String_Connect_Static(pStr p, pStr item){
 //    size 里面包含了'\0'
     if(p->len+item->len>=p->size)return;
@@ -108,6 +109,7 @@ void String_Connect_Static(pStr p, pStr item){
     }
 }
 
+__attribute__((unused))
 void String_Connect_Dynamic(pStr p, pStr item){
     if(item->len+p->len >= p->size){
         p->str = (char*)realloc(p->str,sizeof(char)*(item->len+p->len+DYNAMIC_STR_INCREMENT));
@@ -117,6 +119,7 @@ void String_Connect_Dynamic(pStr p, pStr item){
     }
 }
 
+__attribute__((unused))
 int String_Compare_Dict(pStr str_1, pStr str_2){
 //    In the order of dictionary, finally the length
     char* p1 = str_1->str, *p2 = str_2->str;
@@ -128,15 +131,20 @@ int String_Compare_Dict(pStr str_1, pStr str_2){
 }
 
 // Brute force
-int String_Locate_Sub_Bf(const pStr source, const pStr tar){
+__attribute__((unused))
+int String_Locate_Sub_Bf(pStr source, pStr tar){
     int pos = 0;
     char *p1_self, *p_tar;
     while(pos+tar->len<source->len){
         p_tar = tar->str;
         p1_self = &source->str[pos];
         while (*p_tar){
-
+            if(*p_tar != *p1_self)
+                break;
+            p_tar++;
+            p1_self++;
         };
+        if(!*p_tar)return pos;
         pos++;
     };
     return pos;
@@ -148,14 +156,14 @@ int String_Locate_Sub_Bf(const pStr source, const pStr tar){
 // kmp method (knuth morris pratt)
 // reuse the work, after a failure
 
-void getNext(char * p, int * next)
+void getNext(pStr p, int * next)
 {
     next[0] = -1;
     int i = 0, j = -1;
 
-    while (i < (int)strlen(p))
+    while (i < p->len)
     {
-        if (j == -1 || p[i] == p[j])
+        if (j == -1 || p->str[i] == p->str[j])
         {
             ++i;
             ++j;
@@ -166,14 +174,18 @@ void getNext(char * p, int * next)
     }
 }
 
-int KMP(char * t, char * p)
+__attribute__((unused))
+int KMP(pStr t, pStr p)
 {
     int i = 0;
     int j = 0;
 
-    while (i < (int)strlen(t) && j < (int)strlen(p))
+    int *next = (int*)malloc(sizeof(int)*p->len);
+    getNext(p,next);
+
+    while (i < t->len && j < p->len)
     {
-        if (j == -1 || t[i] == p[j])
+        if (j == -1 || t->str[i] == p->str[j])
         {
             i++;
             j++;
@@ -182,7 +194,9 @@ int KMP(char * t, char * p)
             j = next[j];
     }
 
-    if (j == strlen(p))
+    free(next);
+
+    if (j == p->len)
         return i - j;
     else
         return -1;

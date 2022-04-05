@@ -32,5 +32,55 @@
 
 ### 2.使用next[i-1]
 
-# Boyer Moore
+```c
+void getNext(pStr p, int * next)
+{
+    next[0] = -1;
+    int i = 0, j = -1;
+
+    while (i < p->len)
+    {
+        if (j == -1 || p->str[i] == p->str[j])
+        {
+            ++i;
+            ++j;
+            next[i] = j;
+        }
+        else
+            j = next[j];
+    }
+}
+```
+
+## Code
+
+```c
+__attribute__((unused))
+int KMP(pStr t, pStr p)
+{
+    int i = 0;
+    int j = 0;
+
+    int *next = (int*)malloc(sizeof(int)*p->len);
+    getNext(p,next);
+
+    while (i < t->len && j < p->len)
+    {
+        if (j == -1 || t->str[i] == p->str[j])
+        {
+            i++;
+            j++;
+        }
+        else
+            j = next[j];
+    }
+
+    free(next);
+
+    if (j == p->len)
+        return i - j;
+    else
+        return -1;
+}
+```
 
