@@ -5,6 +5,8 @@
 #ifndef DATASTRUCTUREIMPLEMENTINGC_GENERAL_LIST_H
 #define DATASTRUCTUREIMPLEMENTINGC_GENERAL_LIST_H
 
+#include <stdlib.h>
+
 #ifndef ELEM
 #define ELEM
 typedef int ELEMENT_TYPE;
@@ -15,6 +17,9 @@ typedef int ELEMENT_TYPE;
  * 对于广义表，只有头元素和尾元素两个结点
  * 头元素可以是原子也可以是一个表，尾元素一定要是一张表
  * */
+
+#define ENUM_HR_DATA 'a'
+#define ENUM_HR_PRT 'b'
 
 typedef struct General_List_HeadRearMethod{
     char tag;
@@ -28,7 +33,10 @@ typedef struct General_List_HeadRearMethod{
 
 } GList_HR, *pGList_HR;
 
-typedef struct General_List_SiblingMethod{
+#define ENUM_CS_CH '0'
+#define ENUM_CS_CH_LESS '1'
+
+typedef struct General_List_ChildSiblingMethod{
     char tag;
     union {
         ELEMENT_TYPE data;
@@ -36,10 +44,19 @@ typedef struct General_List_SiblingMethod{
     };
     struct General_List_SiblingMethod* tp;
 
-}GList_Sl, *pGList_Sl;
+}GList_CS, *pGList_CS;
 
+pGList_HR Get_GList_HR(){
+    pGList_HR res = (pGList_HR)malloc(sizeof(GList_HR));
+    res->tag = ENUM_HR_PRT;
+    res->ptr.hp = NULL;
+    res->ptr.hp = NULL;
+    return res;
+}
 
-
-
+//pGList_HR GetHead(pGList_HR obj){
+//    if(!(obj->ptr.hp))return NULL;
+//    return obj->data;
+//}
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_GENERAL_LIST_H
