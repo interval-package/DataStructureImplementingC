@@ -1,0 +1,13 @@
+//
+// Created by Zza on 2022/4/9.
+//
+
+#ifndef DATASTRUCTUREIMPLEMENTINGC_BINARYTREE_CUH
+#define DATASTRUCTUREIMPLEMENTINGC_BINARYTREE_CUH
+
+// Binary Tree with linked node
+
+// Binary Tree using array
+
+
+#endif //DATASTRUCTUREIMPLEMENTINGC_BINARYTREE_CUH

@@ -31,7 +31,6 @@ add_executable(
         Chapter4/String.h
 
 # chapter 5
-        Chapter5/Arrays.h
         Chapter5/General_List.h
         Chapter5/Sparse_Matrix.h
 
@@ -43,4 +42,4 @@ add_executable(
 #        "External Problems/RomanToInt/RomanToInt.h"
 #        "External Problems/SleepingBarber/Sleeping_Barber.h"
 
-        "Chapter5/Orthogonal sparse matrix.h")
+        "Chapter5/Orthogonal sparse matrix.h" Chapter6/BinaryTree.cuh)
