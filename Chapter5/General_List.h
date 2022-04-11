@@ -54,9 +54,13 @@ pGList_HR Get_GList_HR(){
     return res;
 }
 
-//pGList_HR GetHead(pGList_HR obj){
-//    if(!(obj->ptr.hp))return NULL;
-//    return obj->data;
-//}
+pGList_HR GetHead(pGList_HR obj){
+    if(!(obj->ptr.hp))return NULL;
+    return obj->data;
+}
+
+pGList_HR GetLen(){
+
+}
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_GENERAL_LIST_H

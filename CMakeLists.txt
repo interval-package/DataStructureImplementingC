@@ -42,4 +42,6 @@ add_executable(
 #        "External Problems/RomanToInt/RomanToInt.h"
 #        "External Problems/SleepingBarber/Sleeping_Barber.h"
 
-        "Chapter5/Orthogonal sparse matrix.h" Chapter6/BinaryTree.cuh)
+        "Chapter5/Orthogonal sparse matrix.h"
+
+        Chapter6/BinaryTree.h Chapter6/Tree_Seq.h Chapter6/Tree_Child_Sibling.h)

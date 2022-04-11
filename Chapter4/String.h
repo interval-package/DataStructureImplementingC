@@ -180,7 +180,7 @@ int KMP(pStr t, pStr p)
     int i = 0;
     int j = 0;
 
-    int *next = (int*)malloc(sizeof(int)*p->len);
+    int *next = (int*)malloc(sizeof(int)*(p->len+1));
     getNext(p,next);
 
     while (i < t->len && j < p->len)
