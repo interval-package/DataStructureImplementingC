@@ -59,8 +59,8 @@ pGList_HR GetHead(pGList_HR obj){
     return obj->data;
 }
 
-pGList_HR GetLen(){
+pGList_HR GetLen(pGList_HR *tar);
 
-}
+int GetDepth(pGList_HR *tar);
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_GENERAL_LIST_H

@@ -44,4 +44,4 @@ add_executable(
 
         "Chapter5/Orthogonal sparse matrix.h"
 
-        Chapter6/BinaryTree.h Chapter6/Tree_Seq.h Chapter6/Tree_Child_Sibling.h)
+        "Chapter6/Binary Tree/BinaryTree_Link.h" Chapter6/Tree_Child_Sibling.h "Chapter6/Binary Tree/BinaryTree_Array.h")
