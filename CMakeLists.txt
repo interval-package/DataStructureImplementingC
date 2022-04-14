@@ -56,4 +56,6 @@ add_executable(
         "Chapter6/Binary Tree/BinaryTree_Array.h"
         "Chapter6/Binary Tree/Rebuild_BinTree/PreOrderTransverse.h"
         "Chapter6/AVL Tree/IsAVL.h"
-        "Chapter3/Experiments/ParkingLot Management/ParkingLot_Management.h" "Chapter3/Experiments/Product ManageMent/Product_Management.h")
+
+        "Chapter3/Experiments/ParkingLot Management/ParkingLot_Management.h"
+        "Chapter3/Experiments/Product ManageMent/Product_Management.h")
