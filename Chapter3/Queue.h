@@ -5,19 +5,25 @@
 #ifndef DATASTRUCTUREIMPLEMENTINGC_QUEUE_H
 #define DATASTRUCTUREIMPLEMENTINGC_QUEUE_H
 
+#ifndef ELEM
+#define ELEM
+typedef int ELEMENT_TYPE;
+#endif
+
 #include "../Chapter2/Circular_Linked_List.h"
 
 // 实际上这一部分代码是已经写过了，copy过来吧
+// 在之前我们已经实现了，用尾指针来表示循环列表
+// 表头表示
 typedef clNode QueueNode, *Queue;
 
 #define QueueCreate Circular_List_Create
-#define QueueCreateByLen clListInit
 #define QueueDestroy Destroy_clList
-
 #define isEmpty_Que isEmpty_clList
 
-// 在之前我们已经实现了，用尾指针来表示循环列表
-// 表头表示
+int QueueLen(Queue que){
+    return que->next->len;
+}
 
 void QueueJoin(Queue *que, ELEMENT_TYPE tar){
     Queue p = malloc(sizeof(QueueNode));
@@ -46,11 +52,17 @@ ELEMENT_TYPE OutQueue(Queue *que){
     return res;
 }
 
+
+//-----------------------------------------------------------------------------
+
 // 使用顺序表实现循环队列
 
 // (rear - front + m) % m
-
-#define QUE_LEN 100
+/*
+ * rear point the next place without elem
+ * front point the place have elem
+ * when the front - rear == 1 (using a blank place), it should be full.
+ * */
 
 typedef struct sqQueue{
     int rear, front;
@@ -66,19 +78,12 @@ sqQueue sqQueue_Create(int len){
     return res;
 }
 
-/*
- * rear point the next place without elem
- * front point the place have elem
- *
- * when the front - rear == 1 (using a blank place), it should be full.
- * */
-
-int isFull_sqQue(const psqQue sq){
+int isFull_sqQue(psqQue sq){
 //    return (sq->front - sq->rear + sq->len) % sq->len == 1;
     return (sq->rear + 1) % sq->len == sq->front;
 }
 
-int isEmpty_sqQue(const psqQue sq){
+int isEmpty_sqQue(psqQue sq){
     return sq->rear ==  sq->front;
 }
 

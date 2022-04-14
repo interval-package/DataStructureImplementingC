@@ -7,13 +7,13 @@
 
 #ifndef MAIN_FUNC
 #define MAIN_FUNC
+void test_main();
 #endif
 
 typedef struct Car{
     int id;
     int time;
 } Car, *pCar;
-
 
 #ifndef ELEM
 #define ELEM
@@ -30,7 +30,7 @@ typedef struct Dispatch{
 #include "../../Queue.h"
 
 typedef struct ParkingLot{
-    sta Parked;
+    stk_arr Parked;
     Queue Waiting;
 } ParkingLot, *pPark;
 
@@ -100,16 +100,16 @@ int DestroyPark(pPark* tar){
 }
 
 void Display_Cur_Status(pPark tar){
-    sta temp_sta = CreateStack(tar->Parked->len);
+    stk_arr temp_sta = CreateStack(tar->Parked->len);
     pCar temp;
     printf("\nin the parking lot:\n\t---------\n");
     while(!isEmpty(tar->Parked)){
-        PushBack_sta(temp_sta, Pop(tar->Parked));
+        PushBack_static(temp_sta, Pop(tar->Parked));
     }
     while(!isEmpty(temp_sta)){
         temp = Pop(temp_sta);
         printf("\t|car:%d\t|\n", temp->id);
-        PushBack_sta(tar->Parked,temp);
+        PushBack_static(tar->Parked, temp);
     }
     DestroyStack(temp_sta);
 
@@ -136,7 +136,7 @@ int Parking_Dispatch(pPark tar, Dispatch *actions){
             if(isFull(tar->Parked)){
                 QueueJoin(&(tar->Waiting), GetCar(actions));
             } else{
-                PushBack_sta(tar->Parked,GetCar(actions));
+                PushBack_static(tar->Parked, GetCar(actions));
             }
             return 1;
         }
@@ -145,20 +145,20 @@ int Parking_Dispatch(pPark tar, Dispatch *actions){
                 return 0;
             }
             pCar temp;
-            sta temp_sta = CreateStack(tar->Parked->len);
+            stk_arr temp_sta = CreateStack(tar->Parked->len);
             while (!isEmpty(tar->Parked)){
                 temp = Pop(tar->Parked);
                 if(temp->id == actions->id){
                     break;
                 } else{
-                    PushBack_sta(temp_sta,temp);
+                    PushBack_static(temp_sta, temp);
                 }
             }
             printf("%d Car depart, time %d->%d", temp->id, temp->time, actions->time);
             DropCar(temp);
-            while (!isEmpty(temp_sta))PushBack_sta(tar->Parked, Pop(temp_sta));
+            while (!isEmpty(temp_sta))PushBack_static(tar->Parked, Pop(temp_sta));
             if(!isEmpty_Que(tar->Waiting)){
-                PushBack_sta(tar->Parked, OutQueue(&(tar->Waiting)));
+                PushBack_static(tar->Parked, OutQueue(&(tar->Waiting)));
             }
             return 1;
         }

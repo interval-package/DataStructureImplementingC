@@ -6,10 +6,6 @@
 #define DATASTRUCTUREIMPLEMENTINGC_STACK_H
 #include <stdlib.h>
 
-//#ifndef ELEMENT_TYPE
-//#define ELEMENT_TYPE int
-//#endif
-
 //#define INIT_SIZE 100
 #define INCREMENT 10
 
@@ -24,10 +20,10 @@ typedef struct Stack_array {
     int len;
     int top;
     ELEMENT_TYPE* array;
-} Stack_arr, *sta;
+} Stack_arr, *stk_arr;
 
 Stack_arr* CreateStack(int size){
-    sta st = (sta) malloc(sizeof(Stack_arr));
+    stk_arr st = (stk_arr) malloc(sizeof(Stack_arr));
     st->len = size;
 //    先挖坑，后种萝卜
     st->top = 0;
@@ -35,16 +31,16 @@ Stack_arr* CreateStack(int size){
     return st;
 }
 
-void DestroyStack(sta st){
+void DestroyStack(stk_arr st){
     free(st->array);
     free(st);
 }
 
-int isFull(sta st){return st->top == st->len;}
+int isFull(stk_arr st){return st->top == st->len;}
 
-int isEmpty(sta st){return !(st->top);}
+int isEmpty(stk_arr st){return !(st->top);}
 
-void PushBack(sta st, ELEMENT_TYPE obj){
+void PushBack(stk_arr st, ELEMENT_TYPE obj){
     if(st->top == st->len){
         st->len += INCREMENT;
         st->array = (ELEMENT_TYPE*)realloc(st->array,st->len*sizeof(Stack_arr));
@@ -52,7 +48,7 @@ void PushBack(sta st, ELEMENT_TYPE obj){
     st->array[st->top++] = obj;
 }
 
-void PushBack_sta(sta st, ELEMENT_TYPE obj){
+void PushBack_static(stk_arr st, ELEMENT_TYPE obj){
     if(st->top == st->len){
 //        设置的栈的长度是静态的，没有动态增加
         perror("full Stack");
@@ -61,7 +57,7 @@ void PushBack_sta(sta st, ELEMENT_TYPE obj){
     st->array[st->top++] = obj;
 };
 
-ELEMENT_TYPE Pop(sta st){
+ELEMENT_TYPE Pop(stk_arr st){
     if(st->top){
         return st->array[--(st->top)];
     } else{
@@ -75,17 +71,29 @@ ELEMENT_TYPE Pop(sta st){
 #include "../Chapter2/LinkedList.h"
 
 // 什么叫代码重复利用
-typedef lNode lStack_N, *lStk;
+typedef lNode lStack_Node, *lStk;
 
 // 这里只要使用之前定义好的函数就行了
 
-linkedList lListInitByLen(int len);
-void lListDestroy(linkedList *lk);
-int isEmpty_byNext(linkedList l);
+#define lStackInit lListInitByLen
+#define lStackDestroy lListDestroy
+#define isEmpty_lStk isEmpty_byNext
 
-// 重新包装，对头节点使用就是入栈了
-void lListInsertRear(lNode *p, ELEMENT_TYPE item);
-void push_lStk(lStk p, ELEMENT_TYPE item){lListInsertRear(p,item);}
+void lStkPushBack(lStk obj, ELEMENT_TYPE tar){
+    lListInsertRear(obj,tar);
+    obj->len++;
+}
+
+ELEMENT_TYPE lStkPop(lStk obj){
+    if(isEmpty_lStk(obj)){
+        exit(42);
+    }
+    obj->len--;
+    ELEMENT_TYPE res = obj->next->data;
+    obj->next = obj->next->next;
+    free(obj->next);
+    return res;
+}
 
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_STACK_H

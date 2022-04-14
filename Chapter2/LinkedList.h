@@ -151,6 +151,7 @@ void ChangeElem(linkedList l,int pos, ELEMENT_TYPE tar){
     l->next->data = tar;
 }
 
+// 针对节点而言的后插
 void lListInsertRear(lNode *p, ELEMENT_TYPE item){
     lNode *r = (lNode*)malloc(sizeof(lNode));
     r->next = p->next;
@@ -158,6 +159,7 @@ void lListInsertRear(lNode *p, ELEMENT_TYPE item){
     p->next = r;
 }
 
+// 针对节点而言的前插，使用交换数据的方法
 void lListInsertPrior(lNode *p, ELEMENT_TYPE item){
     lNode *r = (lNode*)malloc(sizeof(lNode));
     r->next = p->next;
