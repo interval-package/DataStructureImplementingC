@@ -10,8 +10,9 @@
 //#include "Chapter6/Binary Tree/Rebuild_BinTree/PreOrderTransverse.h"
 //#include "External Problems/SelfDivide/SelfDivideNumbers.h"
 //#include "External Problems/SleepingBarber/Sleeping_Barber.h"
-
+#include "Chapter3/Experiments/ParkingLot Management/ParkingLot_Management.h"
 
 int main(){
+    test_main();
     return 0;
 }

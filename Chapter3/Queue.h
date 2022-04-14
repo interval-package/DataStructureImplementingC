@@ -11,8 +11,10 @@
 typedef clNode QueueNode, *Queue;
 
 #define QueueCreate Circular_List_Create
-#define QueueCreateByLen(len) clListInit(len)
+#define QueueCreateByLen clListInit
 #define QueueDestroy Destroy_clList
+
+#define isEmpty_Que isEmpty_clList
 
 // 在之前我们已经实现了，用尾指针来表示循环列表
 // 表头表示

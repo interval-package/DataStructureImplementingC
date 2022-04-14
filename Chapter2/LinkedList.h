@@ -131,13 +131,14 @@ ELEMENT_TYPE lListFindElem(linkedList l,int pos){
 ELEMENT_TYPE lListGetElem(linkedList l,int pos){
     if(pos>l->len)abort();
     int i=1;
+    ELEMENT_TYPE res;
     while(i<pos){
         l=l->next;
         i++;
     }
-    i = l->next->data;
+    res = l->next->data;
     deleteRearByNode(l);
-    return i;
+    return res;
 }
 
 void ChangeElem(linkedList l,int pos, ELEMENT_TYPE tar){
@@ -166,7 +167,7 @@ void lListInsertPrior(lNode *p, ELEMENT_TYPE item){
 }
 
 void lListInsertById(linkedList p, int pos,ELEMENT_TYPE item){
-    if(pos>p->data){
+    if(pos>p->len){
         perror("exceed boundary");
         abort();
     }
@@ -187,7 +188,7 @@ void deleteRearByNode(lNode *p){
 
 // Delete the node in the pos
 void deleteById(linkedList p,int pos){
-    if(pos<=0||pos>p->data){
+    if(pos<=0||pos>p->len){
         perror("exceed bound");
         return;
     }
@@ -238,6 +239,8 @@ void DispLinkedList(linkedList obj){
     printf("\n");
 }
 
+#ifndef MAIN_FUNC
+#define MAIN_FUNC
 void LinkedListMain(){
     int len = 10;
     linkedList ls = lListInitByLen(len);
@@ -264,5 +267,6 @@ void LinkedListMain(){
     deleteById(ls,6);
     DispLinkedList(ls);
 }
+#endif
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_LINKEDLIST_H

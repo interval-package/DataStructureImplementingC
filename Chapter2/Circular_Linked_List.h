@@ -40,6 +40,10 @@ clList clListInit(int len){
     return temp;
 }
 
+int isEmpty_clList(clList tar){
+    return tar->next == tar;
+}
+
 void Destroy_clList(clList cll){
     clList temp = cll->next;
     cll->next=NULL;

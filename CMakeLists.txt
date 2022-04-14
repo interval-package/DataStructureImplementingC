@@ -20,7 +20,7 @@ add_executable(
         "External Problems/HRRF/HRRF.h"
 
 # chapter 1
-        Chapter1/StuFavouredPolicy.h
+#        Chapter1/StuFavouredPolicy.h
 
 # chapter 2
         Chapter2/Sequential_List.h
@@ -40,6 +40,9 @@ add_executable(
         Chapter3/Questions/HanoiTower/HanoiTower.h
         Chapter3/Questions/TrainTrans/TrainTrans.h
 
+        "Chapter3/Experiments/ParkingLot Management/ParkingLot_Management.h"
+        "Chapter3/Experiments/Product ManageMent/Product_Management.h"
+
 # chapter 4
         Chapter4/String.h
         Chapter4/locate_sub.h
@@ -56,6 +59,4 @@ add_executable(
         "Chapter6/Binary Tree/BinaryTree_Array.h"
         "Chapter6/Binary Tree/Rebuild_BinTree/PreOrderTransverse.h"
         "Chapter6/AVL Tree/IsAVL.h"
-
-        "Chapter3/Experiments/ParkingLot Management/ParkingLot_Management.h"
-        "Chapter3/Experiments/Product ManageMent/Product_Management.h")
+)
