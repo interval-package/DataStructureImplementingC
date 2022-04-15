@@ -48,13 +48,18 @@ void PushBack(stk_arr st, ELEMENT_TYPE obj){
     st->array[st->top++] = obj;
 }
 
-void PushBack_static(stk_arr st, ELEMENT_TYPE obj){
+int PushBack_static(stk_arr st, ELEMENT_TYPE obj){
     if(st->top == st->len){
-//        设置的栈的长度是静态的，没有动态增加
+#ifdef EXIT_METHOD
         perror("full Stack");
-        exit(0);
+//        设置的栈的长度是静态的，没有动态增加
+        exit(1);
+#else
+        return 0;
+#endif
     }
     st->array[st->top++] = obj;
+    return 1;
 };
 
 ELEMENT_TYPE Pop(stk_arr st){
@@ -62,7 +67,7 @@ ELEMENT_TYPE Pop(stk_arr st){
         return st->array[--(st->top)];
     } else{
         perror("empty");
-        exit(0);
+        exit(1);
     }
 }
 
