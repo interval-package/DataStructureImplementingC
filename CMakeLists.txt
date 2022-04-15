@@ -5,7 +5,10 @@ set(CMAKE_C_STANDARD 99)
 
 add_executable(
 # main
-        DataStructureImplementingC main.c
+        DataStructureImplementingC
+
+        main.c
+        init.c
 
         "Mid Term Examination/MidTermQues.h"
 
@@ -15,9 +18,9 @@ add_executable(
         "External Problems/SelfDivide/SelfDivideNumbers.h"
         "External Problems/CanReorderDoubled/CanReorderedDoubled.h"
         "External Problems/RomanToInt/RomanToInt.h"
-        "External Problems/SleepingBarber/Sleeping_Barber.h"
-        "External Problems/IPC/IPC.h"
-        "External Problems/HRRF/HRRF.h"
+        "External Problems/Os/SleepingBarber/Sleeping_Barber.h"
+        "External Problems/Os/IPC/IPC.h"
+        "External Problems/Os/HRRF/HRRF.h"
 
 # chapter 1
 #        Chapter1/StuFavouredPolicy.h
@@ -57,6 +60,10 @@ add_executable(
         "Chapter6/Binary Tree/BinaryTree_Link.h"
         Chapter6/Tree_Child_Sibling.h
         "Chapter6/Binary Tree/BinaryTree_Array.h"
-        "Chapter6/Binary Tree/Rebuild_BinTree/PreOrderTransverse.h"
+        "Chapter6/Binary Tree/BinTreeTraverse/ques/PreOrderTraverse.h"
         "Chapter6/AVL Tree/IsAVL.h"
-)
+        "Chapter6/Binary Tree/BinTreeTraverse/BinTreeTraverse.h"
+        "Chapter6/Binary Tree/BinTreeTraverse/LevelTraverse.h"
+
+
+        "External Problems/Os/BankerResourceDispatch/BankerResourceDispatch.h")

@@ -22,30 +22,6 @@ typedef struct Binary_Tree{
     struct Binary_Tree *parent;
 } *Binary_Tree, TreeNode,*pTreeNode;
 
-void PreOrderTraverse(pTreeNode root, void* action()){
-    if(NULL == root)
-        return;
-    action(root);
-    PreOrderTraverse(root->left, action);
-    PreOrderTraverse(root->right, action);
-}
-
-void MidOrderTraverse(pTreeNode root, void* action()){
-    if(NULL == root)
-        return;
-    MidOrderTraverse(root->left);
-    action(root);
-    MidOrderTraverse(root->right);
-}
-
-void LastOrderTraverse(pTreeNode root, void* action()){
-    if(NULL == root)
-        return;
-    LastOrderTraverse(root->left);
-    LastOrderTraverse(root->right);
-    action(root);
-}
-
 // 已知前序、中序遍历结果，还原二叉树
 
 // 层序遍历

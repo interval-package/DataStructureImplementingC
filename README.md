@@ -19,7 +19,40 @@ Some OS questions.
 5. General List, Arrays and Sparse Matrix
 6. Tree
 
-### 2.Detail info
+### 2.For Usage
+
+#### 1.Stack and queue
+
+In the chapter3 we define the stack and queue, using the macro `ELEMENT_TYPE` to announce the type of elements in the data struct. 
+
+However in some conditions, this method would cause fatal problems(I actually suffer from this, especially when I'm trying to reuse the struct).
+
+##### (1) When we want to contain two different type element using the struct
+
+Since I'm using only one macro to tell the type, when using two struct of different type, they will overcover each other.
+
+So one method is make the elements all pointer and using a new macro to get element of right type.
+
+Such as:
+
+```c
+#ifndef ELEM
+#define ELEM
+typedef void* ELEMENT_TYPE;
+#endif
+
+#define TYPE_MACRO int
+```
+
+##### (2) When other method of another data struct is depending on this basic struct and method
+
+When `ELEMENT_TYPE` is defined `void*`, it's possible to reuse it.
+
+However we'd use the new structure to contain new element.
+
+So we make compromise that, we would redefine a existing structure to implement the new one.
+
+### 3.Detail info
 For each Chapter, I'd write a .md file to illustrate the questions of this chapter.
 
 And in some chapter may have my class note.
