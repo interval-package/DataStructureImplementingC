@@ -11,7 +11,8 @@
 //#include "External Problems/SelfDivide/SelfDivideNumbers.h"
 //#include "External Problems/SleepingBarber/Sleeping_Barber.h"
 //#include "Chapter3/Experiments/ParkingLot Management/ParkingLot_Management.h"
-#include "Chapter3/Experiments/Product ManageMent/Product_Management.h"
+//#include "Chapter3/Experiments/Product ManageMent/Product_Management.h"
+#include "External Problems/Os/BankerResourceDispatch/BankerResourceDispatch.h"
 
 int main(){
     test_main();

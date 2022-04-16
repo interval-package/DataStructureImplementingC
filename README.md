@@ -52,6 +52,18 @@ However we'd use the new structure to contain new element.
 
 So we make compromise that, we would redefine a existing structure to implement the new one.
 
+#### 2.API wrappers
+
+##### (1) Returns
+
+In the first of some data struct, the is some drawback in it.
+
+For some getter type functions, the returns should be the variables but not the "return". The return should deliver the function is finished or not, with bool type.
+
+In chapter6, and after this problem is solved.
+
+##### (2) Constructors
+
 ### 3.Detail info
 For each Chapter, I'd write a .md file to illustrate the questions of this chapter.
 

@@ -25,7 +25,12 @@ linkedList lListInit();
 
 linkedList lListInitByLen(int len);
 
+// the param should be null at first.
+int Constructor_lList(linkedList);
+
+
 void lListDestroy(linkedList *lk);
+
 
 int isEmpty_byLen(linkedList l);
 
@@ -33,12 +38,14 @@ int isEmpty_byNext(linkedList l);
 
 int updateLen(linkedList l);
 
+
 ELEMENT_TYPE lListFindElem(linkedList l,int pos);
 
 // it would delete the elem found in list
 ELEMENT_TYPE lListGetElem(linkedList l,int pos);
 
 void ChangeElem(linkedList l,int pos, ELEMENT_TYPE tar);
+
 
 void lListInsertRear(lNode *p, ELEMENT_TYPE item);
 
@@ -51,6 +58,7 @@ void deleteRearByNode(lNode *p);
 
 // Delete the node in the pos
 void deleteById(linkedList p,int pos);
+
 
 void Reverse_lList(linkedList p0);
 
@@ -77,6 +85,14 @@ linkedList lListInitByLen(int len){
     }
     r->next = NULL;
     return p;
+}
+
+int Constructor_lList(linkedList tar){
+    tar = (lNode*)malloc(sizeof(lNode));
+    if(!tar)return 0;
+    tar->next = NULL;
+    tar->len = 0;
+    return 1;
 }
 
 // destroy func should be cautious about the wild pointer

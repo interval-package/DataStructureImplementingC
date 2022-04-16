@@ -30,7 +30,6 @@ add_executable(
         Chapter2/LinkedList.h Chapter2/StaticLinkedList.h
         Chapter2/DoublyLinkedList.h
         Chapter2/Questions/SortByAccessFrequency/SortByAccessFrequency.h
-        Chapter2/Questions/SortByAccessFrequency/SortByAccessFrequency.c
         Chapter2/Circular_Linked_List.h
         "Chapter2/Questions/Josephus problem/JosephusProblem.h"
         Chapter2/Questions/City_Management/CityManagement.h
