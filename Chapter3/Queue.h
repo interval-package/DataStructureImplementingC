@@ -25,7 +25,7 @@ int QueueLen(Queue que){
     return que->next->len;
 }
 
-void QueueJoin(Queue *que, ELEMENT_TYPE tar){
+void EnQueue(Queue *que, ELEMENT_TYPE tar){
     Queue p = malloc(sizeof(QueueNode));
     p->data = tar;
     p->next = (*que)->next;
@@ -34,7 +34,7 @@ void QueueJoin(Queue *que, ELEMENT_TYPE tar){
     *que = p;
 }
 
-ELEMENT_TYPE OutQueue(Queue *que){
+ELEMENT_TYPE DeQueue(Queue *que){
     Queue temp, head = (*que)->next;
     temp = head->next;
     if(!head->len){
@@ -87,13 +87,13 @@ int isEmpty_sqQue(psqQue sq){
     return sq->rear ==  sq->front;
 }
 
-void sqQueue_In(psqQue sq, ELEMENT_TYPE tar){
+void EnQueue_Sq(psqQue sq, ELEMENT_TYPE tar){
     if(isFull_sqQue(sq))return;
     sq->array[sq->rear] = tar;
     sq->rear = (sq->rear+1) % sq->len;
 };
 
-ELEMENT_TYPE sqQueue_Out(psqQue sq){
+ELEMENT_TYPE DeQueue_Sq(psqQue sq){
     if(isEmpty_sqQue(sq)){
         exit(-1);
     }
@@ -102,7 +102,7 @@ ELEMENT_TYPE sqQueue_Out(psqQue sq){
     return res;
 };
 
-int sqQueue_getLen(psqQue sq){
+int getLen_sqQue(psqQue sq){
 //    但凡出现差值操作，都一定是要加上长度然后取模
     return (sq->rear - sq->front + sq->len) % sq->len;
 }

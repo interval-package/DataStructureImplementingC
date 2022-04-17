@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <math.h>
+#include <stdbool.h>
 #ifndef ELEM
 #define ELEM
 typedef int ELEMENT_TYPE;

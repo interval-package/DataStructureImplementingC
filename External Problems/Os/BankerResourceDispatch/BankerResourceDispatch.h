@@ -78,11 +78,14 @@ bool EndPhaseJudge(sfWork* jud, pCond cond);
 void test_main(){
     Condition cond;
     InitCond(&cond);
+    cond.available[0] = 2;
+    cond.available[1] = 4;
+    cond.available[2] = 3;
     Actions reqs[] = {
-            {0,{1,0,1}},
-            {1,{2,1,0}},
-            {1,{2,1,3}},
-            {1,{2,1,3}},
+            {0,{2,0,0}},
+            {1,{0,1,1}},
+            {1,{2,1,2}},
+            {1,{0,1,0}},
             {-1,{2,1,0}},
     };
     acts req = reqs;
@@ -209,13 +212,13 @@ bool sfWorkInit(sfWork* jud, pCond cond){
     return 1;
 }
 
+
 bool FindAndAlloc(sfWork* jud, pCond cond){
     for(int i=0, j; i<cond->n; i++){
         if(!jud->finished[i]){
             for(j=0; j<M && cond->need[i][j] < jud->work[j]; j++);
             if(j == M){
                 for(j=0; j<M; j++) { jud->work[j] += cond->allocation[i][j]; }
-
                 jud->finished[i] = true;
                 return 1;
             }

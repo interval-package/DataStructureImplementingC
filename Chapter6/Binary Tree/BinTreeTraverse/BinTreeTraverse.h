@@ -7,6 +7,7 @@
 
 #include "../BinaryTree_Array.h"
 #include "../BinaryTree_Link.h"
+#include "../TreeUtils/BinTreeUtils.h"
 
 #define BINARY_TREE_TRAVERSE_STACK
 
@@ -44,9 +45,43 @@ void LastOrderTraverse(pTreeNode root, void* action()){
 #ifdef BINARY_TREE_TRAVERSE_STACK
 // using stack to imitate recursion
 
-int PreOrderTraverse(pTreeNode root, void* action(), void* container);
+//int PreOrderTraverse(pTreeNode root, void* action(), void* container);
+//int PostOrderTraverse(pTreeNode root, void* action(), void* container);
 int InOrderTraverse(pTreeNode root, void* action(), void* container);
-int PostOrderTraverse(pTreeNode root, void* action(), void* container);
+
+// in stack method 1
+int InOrderTraverse(pTreeNode root, void* action(), void* container){
+    _TStk stk;
+    _tree_init_stk(stk);
+
+#ifdef TREE_TRAVERSE_ACTION_1
+//    使用栈模拟的中序，方法1
+    while (stk->top){
+        while(root){
+            _tree_stk_push(stk, root);
+            root = root->left;
+        }
+        _tree_stk_pop(stk, &root);
+        action(root,container);
+        root = root->right;
+    }
+#else
+//    使用栈模拟的中序，方法2
+    while(root || stk->top){
+        if(root){
+            _tree_stk_push(stk,root);
+            root = root->left;
+        }else{
+            _tree_stk_pop(stk,&root);
+            action(root,container);
+            root = root->right;
+        }
+    }
+#endif
+
+    _tree_des_stk(stk);
+    return 1;
+}
 
 #endif
 

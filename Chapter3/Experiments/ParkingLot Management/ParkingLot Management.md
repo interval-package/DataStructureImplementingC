@@ -360,7 +360,7 @@ int DestroyPark(pPark* tar){
     while (!isEmpty((*tar)->Parked))
         DropCar(Pop((*tar)->Parked));
     while (!isEmpty_Que((*tar)->Waiting))
-        DropCar(OutQueue(&((*tar)->Waiting)));
+        DropCar(DeQueue(&((*tar)->Waiting)));
     DestroyStack((*tar)->Parked);
     QueueDestroy((*tar)->Waiting);
     free(*tar);
@@ -387,12 +387,12 @@ void Display_Cur_Status(pPark tar){
     Queue que_temp = QueueCreate();
 
     while (!isEmpty_Que(tar->Waiting)){
-        temp = OutQueue(&(tar->Waiting));
+        temp = DeQueue(&(tar->Waiting));
         printf("\t|car:%d\t|\n", temp->id);
-        QueueJoin(&que_temp,temp);
+        EnQueue(&que_temp,temp);
     }
     while (!isEmpty_Que(que_temp)){
-        QueueJoin(&(tar->Waiting), OutQueue(&que_temp));
+        EnQueue(&(tar->Waiting), DeQueue(&que_temp));
     }
     printf("\t---------\n");
     printf("the queue\n");
@@ -403,7 +403,7 @@ int Parking_Dispatch(pPark tar, Dispatch *actions){
     switch (actions->act) {
         case 'A':{
             if(isFull(tar->Parked)){
-                QueueJoin(&(tar->Waiting), GetCar(actions));
+                EnQueue(&(tar->Waiting), GetCar(actions));
             } else{
                 PushBack_static(tar->Parked,GetCar(actions));
             }
@@ -427,7 +427,7 @@ int Parking_Dispatch(pPark tar, Dispatch *actions){
             DropCar(temp);
             while (!isEmpty(temp_sta))PushBack_static(tar->Parked, Pop(temp_sta));
             if(!isEmpty_Que(tar->Waiting)){
-                PushBack_static(tar->Parked, OutQueue(&(tar->Waiting)));
+                PushBack_static(tar->Parked, DeQueue(&(tar->Waiting)));
             }
             return 1;
         }

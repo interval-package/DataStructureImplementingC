@@ -65,4 +65,5 @@ add_executable(
         "Chapter6/Binary Tree/BinTreeTraverse/LevelTraverse.h"
 
 
-        "External Problems/Os/BankerResourceDispatch/BankerResourceDispatch.h")
+        "External Problems/Os/BankerResourceDispatch/BankerResourceDispatch.h"
+        "Chapter6/Binary Tree/TreeUtils/BinTreeUtils.h")
