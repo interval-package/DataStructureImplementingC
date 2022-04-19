@@ -18,7 +18,7 @@ typedef struct Stack_array {
     int len;
     int top;
     ELEMENT_TYPE* array;
-} Stack_arr, *stk_arr;
+} Stack_arr, *stk;
 ```
 
 
@@ -87,19 +87,19 @@ Stack_arr* CreateStack(int size)
 `DestroyStack`
 
 ```c
-void DestroyStack(stk_arr st)
+void DestroyStack(stk st)
 ```
 
 | param     | type  | description                  |
 | --------- | ----- | ---------------------------- |
-| `stk_arr` | ` st` | 由之前构造函数创建的动态对象 |
+| `stk` | ` st` | 由之前构造函数创建的动态对象 |
 
 ##### full or empty
 
 ```c
-int isFull(stk_arr st){return st->top == st->len;}
+int isFull(stk st){return st->top == st->len;}
 
-int isEmpty(stk_arr st){return !(st->top);}
+int isEmpty(stk st){return !(st->top);}
 ```
 
 ##### Pushback
@@ -109,16 +109,16 @@ int isEmpty(stk_arr st){return !(st->top);}
 `PushBack_static`
 
 ```c
-void PushBack(stk_arr st, ELEMENT_TYPE obj);
+void PushBack(stk st, ELEMENT_TYPE obj);
 动态装入，当对满栈装入时，会使得增加长度
 
-void PushBack_static(stk_arr st, ELEMENT_TYPE obj);
+void PushBack_static(stk st, ELEMENT_TYPE obj);
 静态装入，满则溢出
 ```
 
 | param | type         | description |
 | ----- | ------------ | ----------- |
-| st    | stk_arr      | 目标栈      |
+| st    | stk      | 目标栈      |
 | obj   | ELEMENT_TYPE | 数据        |
 
 ##### Pop
@@ -126,12 +126,12 @@ void PushBack_static(stk_arr st, ELEMENT_TYPE obj);
 `Pop`
 
 ```c
-ELEMENT_TYPE Pop(stk_arr st)
+ELEMENT_TYPE Pop(stk st)
 ```
 
 | param     | type         | description                                  |
 | --------- | ------------ | -------------------------------------------- |
-| `stk_arr` | ` st`        | 目标栈                                       |
+| `stk` | ` st`        | 目标栈                                       |
 | return    | ELEMENT_TYPE | 存储的值                                     |
 | errno     | 1            | 当对空栈进行出栈操作的时候，使得程序跳出运行 |
 
@@ -192,10 +192,10 @@ typedef struct Stack_array {
     int len;
     int top;
     ELEMENT_TYPE* array;
-} Stack_arr, *stk_arr;
+} Stack_arr, *stk;
 
 Stack_arr* CreateStack(int size){
-    stk_arr st = (stk_arr) malloc(sizeof(Stack_arr));
+    stk st = (stk) malloc(sizeof(Stack_arr));
     st->len = size;
 //    先挖坑，后种萝卜
     st->top = 0;
@@ -203,16 +203,16 @@ Stack_arr* CreateStack(int size){
     return st;
 }
 
-void DestroyStack(stk_arr st){
+void DestroyStack(stk st){
     free(st->array);
     free(st);
 }
 
-int isFull(stk_arr st){return st->top == st->len;}
+int isFull(stk st){return st->top == st->len;}
 
-int isEmpty(stk_arr st){return !(st->top);}
+int isEmpty(stk st){return !(st->top);}
 
-void PushBack(stk_arr st, ELEMENT_TYPE obj){
+void PushBack(stk st, ELEMENT_TYPE obj){
     if(st->top == st->len){
         st->len += INCREMENT;
         st->array = (ELEMENT_TYPE*)realloc(st->array,st->len*sizeof(Stack_arr));
@@ -220,7 +220,7 @@ void PushBack(stk_arr st, ELEMENT_TYPE obj){
     st->array[st->top++] = obj;
 }
 
-void PushBack_static(stk_arr st, ELEMENT_TYPE obj){
+void PushBack_static(stk st, ELEMENT_TYPE obj){
     if(st->top == st->len){
 //        设置的栈的长度是静态的，没有动态增加
         perror("full Stack");
@@ -229,7 +229,7 @@ void PushBack_static(stk_arr st, ELEMENT_TYPE obj){
     st->array[st->top++] = obj;
 };
 
-ELEMENT_TYPE Pop(stk_arr st){
+ELEMENT_TYPE Pop(stk st){
     if(st->top){
         return st->array[--(st->top)];
     } else{

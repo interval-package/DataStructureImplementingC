@@ -9,7 +9,7 @@
 #include "../../Stack.h"
 
 bool TrainTrans(const int *seq, int len){
-    sta temp = CreateStack(len);
+    stk_arr temp = CreateStack(len);
     bool flag = true;
     int i=1, j=0;
     while(i<=len && j<len){

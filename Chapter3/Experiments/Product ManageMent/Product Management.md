@@ -18,7 +18,7 @@ typedef product ELEMENT_TYPE;
 
 #include "../../Stack.h"
 
-typedef stk_arr Cupboard;
+typedef stk Cupboard;
 ```
 
 ## 三、使用说明
@@ -44,7 +44,7 @@ typedef product ELEMENT_TYPE;
 
 #include "../../Stack.h"
 
-typedef stk_arr Cupboard;
+typedef stk Cupboard;
 ```
 
 同时我们对于货架的操作，是由时间继续调控的，认为时间为0是结束，而时间小于0则是取货物。
@@ -240,7 +240,7 @@ typedef product ELEMENT_TYPE;
 
 #include "../../Stack.h"
 
-typedef stk_arr Cupboard;
+typedef stk Cupboard;
 
 void CupboardDisplay(Cupboard);
 

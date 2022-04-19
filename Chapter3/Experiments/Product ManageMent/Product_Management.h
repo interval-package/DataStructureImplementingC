@@ -31,7 +31,11 @@ int StoreProduct(Cupboard, time);
 
 int CupboardAction(Cupboard, time);
 
+void TerminalDisplay();
+
 void test_main(){
+    TerminalDisplay();
+
     int cap = 3;
     time input[] = {1,2,5,3,-1,-1,-1,
                     -1,2,3,6,
@@ -49,7 +53,28 @@ void test_main(){
     }
 
     DestroyStack(store);
+}
 
+void TerminalDisplay(){
+    printf("input the capacity of store: ");
+    int cap;
+    scanf("%d",&cap);
+    Cupboard store = CreateStack(cap);
+    printf("please input new item:\n"
+           "case -1: pop top\n"
+           "case 0 end process\n"
+           "case pos: tag of the item time\n"
+           "here: \n");
+
+    time container;
+    while (scanf("%d",&container)){
+        if(container){
+            CupboardAction(store,container);
+            CupboardDisplay(store);
+        } else{
+            break;
+        }
+    }
 }
 
 void CupboardDisplay(Cupboard tar){
@@ -117,6 +142,12 @@ int CupboardAction(Cupboard cap, time tar){
     } else{
         StoreProduct(cap,tar);
     }
+    return 1;
+}
+
+#include "../../../Chapter4/String.h"
+
+int BaseTransform(const char* tar, pStr container){
     return 1;
 }
 

@@ -72,7 +72,7 @@ int ArrayCap2Int(const int *arr, int top){
 int CalcProcessOfRPN(const char *chars){
 // 浮标指针
     char *vars = (char*)chars;
-    sta obj = CreateStack(MAX_CAP);
+    stk_arr obj = CreateStack(MAX_CAP);
 //    寄存栈
     int temp[MAX_CAP];
     int a, b, top = 0;

@@ -15,7 +15,7 @@ typedef char ELEMENT_TYPE;
 int JudgeParentheses(char *tars){
 // tars should be a valid phrase, end with '\0'
 // len is the capacity of stack
-    sta container = CreateStack(10);
+    stk_arr container = CreateStack(10);
     PushBack(container,'#');
     ELEMENT_TYPE temp;
     while(*tars){

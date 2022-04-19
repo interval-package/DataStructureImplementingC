@@ -35,7 +35,7 @@ typedef struct Dispatch{
 
 ```c
 typedef struct ParkingLot{
-    stk_arr Parked;
+    stk Parked;
     Queue Waiting;
 } ParkingLot, *pPark;
 ```
@@ -299,7 +299,7 @@ typedef struct Dispatch{
 #include "../../Queue.h"
 
 typedef struct ParkingLot{
-    stk_arr Parked;
+    stk Parked;
     Queue Waiting;
 } ParkingLot, *pPark;
 
@@ -369,7 +369,7 @@ int DestroyPark(pPark* tar){
 }
 
 void Display_Cur_Status(pPark tar){
-    stk_arr temp_sta = CreateStack(tar->Parked->len);
+    stk temp_sta = CreateStack(tar->Parked->len);
     pCar temp;
     printf("\nin the parking lot:\n\t---------\n");
     while(!isEmpty(tar->Parked)){
@@ -414,7 +414,7 @@ int Parking_Dispatch(pPark tar, Dispatch *actions){
                 return 0;
             }
             pCar temp;
-            stk_arr temp_sta = CreateStack(tar->Parked->len);
+            stk temp_sta = CreateStack(tar->Parked->len);
             while (!isEmpty(tar->Parked)){
                 temp = Pop(tar->Parked);
                 if(temp->id == actions->id){

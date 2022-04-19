@@ -100,5 +100,30 @@ ELEMENT_TYPE lStkPop(lStk obj){
     return res;
 }
 
+void Display_Status(stk_arr tar) {
+    stk_arr temp_sta = CreateStack(tar->len);
+    ELEMENT_TYPE temp;
+    printf("---------\n");
+    while (!isEmpty(tar)) {
+        PushBack_static(temp_sta, Pop(tar));
+    }
+    while (!isEmpty(temp_sta)) {
+        temp = Pop(temp_sta);
+        printf("|%d\t|\n", temp);
+        PushBack_static(tar, temp);
+    }
+    DestroyStack(temp_sta);
+}
+
+#ifndef MAIN_FUNC
+#define MAIN_FUNC
+void test_main(){
+    stk_arr temp = CreateStack(20);
+    for(int i=0;i<10;i++){
+        PushBack(temp,i);
+    }
+    Display_Status(temp);
+}
+#endif
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_STACK_H
