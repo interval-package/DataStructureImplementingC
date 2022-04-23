@@ -2,12 +2,14 @@
 // Created by Zza on 2022/4/15.
 //
 
-#ifndef ELEM
-#define ELEM
-typedef void* ELEMENT_TYPE;
-#endif
+//#ifndef ELEM
+//#define ELEM
+//typedef void* ELEMENT_TYPE;
+//#endif
 
 #define TYPE_MACRO int
+
+//#include "Chapter6/HuffManTree/HuffManTree.h"
 
 //#include <stdio.h>
 

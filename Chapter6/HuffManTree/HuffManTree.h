@@ -5,14 +5,16 @@
 #ifndef DATASTRUCTUREIMPLEMENTINGC_HUFFMANTREE_H
 #define DATASTRUCTUREIMPLEMENTINGC_HUFFMANTREE_H
 
+#include <stdlib.h>
+#include <errno.h>
+#include <math.h>
+#include "../../Chapter4/String.h"
+
 typedef struct node{
     char tar;
     int freq;
 } node;
 
-#include <stdlib.h>
-#include <errno.h>
-#include <math.h>
 #ifndef ELEM
 #define ELEM
 typedef node ELEMENT_TYPE;
@@ -21,6 +23,7 @@ typedef node ELEMENT_TYPE;
 #include "../Binary Tree/BinaryTree_Array.h"
 
 typedef struct HuffManTree{
+//    实际上这里应该自己再重新设置一个
     Bin_Tree_Arr trees;
     int curTop;
     int treeNums;
@@ -33,13 +36,23 @@ typedef struct InitDataPackage{
     node* init;
 } pkg;
 
-bool Init_HuffMan(HuffManTree* tar, pkg* info);
+__attribute__((unused)) bool Init_HuffMan(HuffManTree* tar, pkg* info);
+
+__attribute__((unused)) bool HuffManEncoding(HuffManTree* tar);
+
+__attribute__((unused)) bool HuffManDecoding(HuffManTree* obj, char tar, pStr res);
+
+__attribute__((unused)) bool HuffManDecodeDisplay(Bin_Tree_Arr obj, int root);
+
+//======================================================================================================================
 
 bool _find_two_min_tree(HuffManTree* tar, int *min1, int *min2);
 
 bool _tree_merge(HuffManTree* tar, int root1, int root2);
 
-bool HuffManEncoding(HuffManTree* tar){
+//======================================================================================================================
+
+__attribute__((unused)) bool HuffManEncoding(HuffManTree* tar){
     int timer = tar->treeNums - 1;
     int cur_tree_l, cur_tree_r;
     while (timer--){
@@ -51,9 +64,9 @@ bool HuffManEncoding(HuffManTree* tar){
     return true;
 }
 
-bool Init_HuffMan(HuffManTree* tar, pkg* info){
+__attribute__((unused)) bool Init_HuffMan(HuffManTree* tar, pkg* info){
     BinStaticTree_init(tar->trees, 2*info->n+1);
-    tar->treeNums = tar->curTop =info->n;
+    tar->treeNums = tar->curTop = tar->trees->cur =info->n;
     tar->roots = (int*) malloc(sizeof(int)*info->n);
     for(int i=0;i<info->n;i++){
         tar->trees->elems[i].data = info->init[i];
@@ -63,6 +76,8 @@ bool Init_HuffMan(HuffManTree* tar, pkg* info){
     tar->encoded = false;
     return true;
 }
+
+//======================================================================================================================
 
 bool _find_two_min_tree(HuffManTree* tar, int *min1, int *min2){
 //    由于我们算法的设计，我们认为，0号位置一定会在交归纳中是最后一个树的根，用这个来预设

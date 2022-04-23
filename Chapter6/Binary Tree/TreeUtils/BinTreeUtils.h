@@ -12,14 +12,19 @@
 
 #define _TREE_STACK_LEN 10
 
+#ifndef TREE_STK
+#define TREE_STK
+typedef pTreeNode tNode;
+#endif
+
 typedef struct TreeStk{
-    pTreeNode* body;
+    tNode* body;
     int top;
     int len;
 } _TreeStk, *_TStk;
 
 bool _tree_init_stk(_TStk tar){
-    tar->body = (pTreeNode*) malloc(sizeof(pTreeNode)*_TREE_STACK_LEN);
+    tar->body = (tNode*) malloc(sizeof(tNode)*_TREE_STACK_LEN);
     tar->top = 0;
     tar->len = _TREE_STACK_LEN;
     return tar->body;
@@ -33,16 +38,16 @@ bool _tree_des_stk(_TStk tar){
     return 1;
 }
 
-bool _tree_stk_push(_TStk tar, pTreeNode obj){
+bool _tree_stk_push(_TStk tar, tNode obj){
     if(tar->top == tar->len){
         tar->len += _TREE_STACK_LEN;
-        tar->body = (pTreeNode*) realloc(tar->body,sizeof(pTreeNode)*(tar->len));
+        tar->body = (tNode*) realloc(tar->body,sizeof(tNode)*(tar->len));
     }
     tar->body[tar->top++] =  obj;
     return 1;
 }
 
-bool _tree_stk_pop(_TStk tar, pTreeNode* container){
+bool _tree_stk_pop(_TStk tar, tNode* container){
     if(tar->top){
         *container = tar->body[--(tar->top)];
         return 1;

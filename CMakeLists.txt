@@ -66,4 +66,4 @@ add_executable(
 
 
         "External Problems/Os/BankerResourceDispatch/BankerResourceDispatch.h"
-        "Chapter6/Binary Tree/TreeUtils/BinTreeUtils.h" "Chapter6/Binary Tree/BinTree_Thread.h" Chapter6/HuffManTree/HuffManTree.h)
+        "Chapter6/Binary Tree/TreeUtils/BinTreeUtils.h" "Chapter6/Binary Tree/BinTree_Thread.h" Chapter6/HuffManTree/HuffManTree.h Chapter6/HuffManTree/HuffManTreeDecoding.h)

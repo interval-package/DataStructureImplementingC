@@ -6,7 +6,7 @@
 #define DATASTRUCTUREIMPLEMENTINGC_STRING_H
 
 #include <stdlib.h>
-
+#include <stdbool.h>
 #define DYNAMIC_STR_INIT_LEN 50
 #define DYNAMIC_STR_INCREMENT 10
 
@@ -25,6 +25,10 @@ pStr String_Get(){
     return res;
 }
 
+bool String_Construct(pStr res, const char *tar){
+    return true;
+}
+
 pStr String_Init(const char *tar){
     pStr res = (pStr) malloc(sizeof(str_sq));
     res->size = DYNAMIC_STR_INIT_LEN;
@@ -41,15 +45,17 @@ pStr String_Init(const char *tar){
     return res;
 }
 
-void String_Destruct(pStr *p){
+bool String_Destruct(pStr *p){
     free((*p)->str);
     free(*p);
     *p = NULL;
+    return true;
 }
 
-void String_Clear(pStr p){
+bool String_Clear(pStr p){
     p->str[0] = '\0';
     p->len = 0;
+    return true;
 }
 
 int String_Len_Certification(pStr p){

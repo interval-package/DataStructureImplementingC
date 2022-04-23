@@ -19,7 +19,7 @@ typedef int ELEMENT_TYPE;
 
 typedef struct StaticNode{
     ELEMENT_TYPE data;
-    int left, right;
+    int left, right, parent;
 }_StaticNode, *_pNode;
 
 typedef struct Binary_Tree_Array{
