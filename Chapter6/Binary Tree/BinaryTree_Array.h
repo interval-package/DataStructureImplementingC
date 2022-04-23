@@ -14,13 +14,30 @@
 typedef int ELEMENT_TYPE;
 #endif
 
+
 // Binary Tree using array
 
+typedef struct StaticNode{
+    ELEMENT_TYPE data;
+    int left, right;
+}_StaticNode, *_pNode;
+
 typedef struct Binary_Tree_Array{
-    ELEMENT_TYPE *arr;
+    _StaticNode *elems;
     int len;
+    int cur;
 } Binary_Tree_Array, *Bin_Tree_Arr, *Bin_Tree_Arr_Node;
 
-Bin_Tree_Arr Init_BinArr();
+bool BinStaticTree_init(Bin_Tree_Arr tar, int total_size){
+    tar->elems = (_pNode) malloc(sizeof(_StaticNode)*(total_size));
+    tar->len = total_size;
+    tar->cur = 0;
+    return true;
+}
+
+bool BinStaticTree_destruct(Bin_Tree_Arr tar){
+    free(tar->elems);
+    return true;
+}
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_BINARYTREE_ARRAY_H
