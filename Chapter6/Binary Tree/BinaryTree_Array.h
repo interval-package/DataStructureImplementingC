@@ -32,6 +32,7 @@ bool BinStaticTree_init(Bin_Tree_Arr tar, int total_size){
     tar->elems = (_pNode) malloc(sizeof(_StaticNode)*(total_size));
     tar->len = total_size;
     tar->cur = 0;
+    tar->elems[0].right = tar->elems[0].left =tar->elems[0].parent = -1;
     return true;
 }
 
