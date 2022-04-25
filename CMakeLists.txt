@@ -21,6 +21,7 @@ add_executable(
         "External Problems/Os/SleepingBarber/Sleeping_Barber.h"
         "External Problems/Os/IPC/IPC.h"
         "External Problems/Os/HRRF/HRRF.h"
+        "External Problems/Os/BankerResourceDispatch/BankerResourceDispatch.h"
 
 # chapter 1
 #        Chapter1/StuFavouredPolicy.h
@@ -63,7 +64,9 @@ add_executable(
         "Chapter6/AVL Tree/IsAVL.h"
         "Chapter6/Binary Tree/BinTreeTraverse/BinTreeTraverse.h"
         "Chapter6/Binary Tree/BinTreeTraverse/LevelTraverse.h"
+        "Chapter6/Binary Tree/TreeUtils/BinTreeUtils.h"
+        "Chapter6/Binary Tree/BinTree_Thread.h"
 
-
-        "External Problems/Os/BankerResourceDispatch/BankerResourceDispatch.h"
-        "Chapter6/Binary Tree/TreeUtils/BinTreeUtils.h" "Chapter6/Binary Tree/BinTree_Thread.h" Chapter6/HuffManTree/HuffManTree.h Chapter6/HuffManTree/HuffManTreeDecoding.h)
+        Chapter6/HuffManTree/HuffManTreeEncoding.h
+        Chapter6/HuffManTree/HuffManTreeDecoding.h
+        Chapter6/HuffManTree/HuffManTree.h)

@@ -5,7 +5,7 @@
 #ifndef DATASTRUCTUREIMPLEMENTINGC_HUFFMANTREEDECODING_H
 #define DATASTRUCTUREIMPLEMENTINGC_HUFFMANTREEDECODING_H
 
-#include "./HuffManTree.h"
+#include "./HuffManTreeEncoding.h"
 
 __attribute__((unused)) bool HuffManDecoding(HuffManTree* obj, char tar, pStr res);
 

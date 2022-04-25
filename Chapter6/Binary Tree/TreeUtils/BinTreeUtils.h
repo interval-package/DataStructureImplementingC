@@ -59,16 +59,38 @@ bool _tree_stk_pop(_TStk tar, tNode* container){
 // Tree Queue
 
 typedef struct TreeQueue{
-
+    struct TreeQueue* next;
+    tNode data;
 } _TreeQue, *_tQue;
 
-bool _tree_init_que();
+bool _tree_init_que(_tQue tar){
 
-bool _tree_des_que();
+    return true;
+}
+
+bool _tree_dequeue(_tQue tar, _tQue* container){
+    if(tar->next == tar){
+        return false;
+    } else{
+//        这边还是只能是修改指针变量指向的地方
+        (*container) = tar->next;
+        tar->next = (*container)->next;
+        return true;
+    }
+}
+
+bool _tree_des_que(_tQue tar){
+    _tQue temp = tar->next;
+    while (tar->next != tar){
+        _tree_dequeue(tar,&temp);
+        free(temp);
+    }
+    return true;
+}
 
 bool _tree_enqueue();
 
-bool _tree_dequeue();
+
 
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_TREEUTILS_H
