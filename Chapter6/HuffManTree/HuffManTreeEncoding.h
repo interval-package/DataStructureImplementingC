@@ -36,13 +36,15 @@ typedef struct InitDataPackage{
     node* init;
 } pkg;
 
+bool DisplayHuffManStruct(HuffManTree*);
+
+__attribute__((unused)) bool PkgDestruct(pkg*);
+
 __attribute__((unused)) bool Init_HuffMan(HuffManTree* tar, pkg* info);
 
 __attribute__((unused)) bool HuffManEncoding(HuffManTree* tar);
 
-__attribute__((unused)) bool HuffManDecoding(HuffManTree* obj, char tar, pStr res);
-
-__attribute__((unused)) bool HuffManDecodeDisplay(Bin_Tree_Arr obj, int root);
+bool HuffManDestruct(HuffManTree *tar);
 
 //======================================================================================================================
 
@@ -65,13 +67,14 @@ __attribute__((unused)) bool HuffManEncoding(HuffManTree* tar){
 }
 
 __attribute__((unused)) bool Init_HuffMan(HuffManTree* tar, pkg* info){
+    tar->trees = (Binary_Tree_Array*)malloc(sizeof(Binary_Tree_Array));
     BinStaticTree_init(tar->trees, 2*info->n+1);
     tar->treeNums = tar->curTop = tar->trees->cur =info->n;
     tar->roots = (int*) malloc(sizeof(int)*info->n);
     for(int i=0;i<info->n;i++){
         tar->trees->elems[i].data = info->init[i];
         tar->trees->elems[i].left = tar->trees->elems[i].right = -1;
-        tar->roots[i]=-1;
+        tar->roots[i]=i;
     }
     tar->encoded = false;
     return true;
@@ -81,15 +84,15 @@ __attribute__((unused)) bool Init_HuffMan(HuffManTree* tar, pkg* info){
 
 bool _find_two_min_tree(HuffManTree* tar, int *min1, int *min2){
 //    由于我们算法的设计，我们认为，0号位置一定会在交归纳中是最后一个树的根，用这个来预设
-    *min1, *min2 = 0;
+    *min1 = *min2 = 0;
     int temp;
 //    root负责记录是树根的结点位置
-    for(int i=1, j=0;i<tar->treeNums;i++){
+    for(int i=1, j=0;i < tar->treeNums;i++){
         temp = tar->roots[i];
-        if(tar->roots[i]>=0){
-            temp = tar->trees[temp].elems->data.freq;
-            if(temp <= tar->trees[tar->roots[*min2]].elems->data.freq){
-                if(temp < tar->trees[tar->roots[*min2]].elems->data.freq){
+        if(temp>=0){
+            temp = tar->trees->elems[temp].data.freq;
+            if(temp <= tar->trees->elems[tar->roots[*min2]].data.freq){
+                if(temp < tar->trees->elems[tar->roots[*min1]].data.freq){
                     *min2 = *min1;
                     *min1 = i;
                 } else{
@@ -98,18 +101,24 @@ bool _find_two_min_tree(HuffManTree* tar, int *min1, int *min2){
             }
         }
     }
-    tar->encoded = true;
     return true;
 }
 
 bool _tree_merge(HuffManTree* tar, int root_l, int root_r){
     node l, r, cur;
-    l = tar->trees[tar->roots[root_l]].elems->data;
-    r = tar->trees[tar->roots[root_r]].elems->data;
 
-    _StaticNode temp = {{l.tar,l.freq + r.freq},tar->roots[root_l], tar->roots[root_r]};
+    l = tar->trees->elems[tar->roots[root_l]].data;
+    r = tar->trees->elems[tar->roots[root_r]].data;
 
-    *(tar->trees[tar->curTop].elems) = temp;
+    tar->trees->elems[tar->roots[root_l]].parent = tar->trees->elems[tar->roots[root_r]].parent = tar->curTop;
+
+//    printf("merge %d,%d at %d,%d\n",root_l,root_r,tar->roots[root_l],tar->roots[root_r]);
+//    printf("with char: %c,%c\n",l.tar,r.tar);
+//    printf("with freq: %d,%d\n",l.freq,r.freq);
+
+    _StaticNode temp = {{'s',l.freq + r.freq},tar->roots[root_l], tar->roots[root_r]};
+    
+    tar->trees->elems[tar->curTop] = temp;
 
     tar->roots[root_l] = tar->curTop;
     tar->roots[root_r] = -1;
@@ -117,5 +126,13 @@ bool _tree_merge(HuffManTree* tar, int root_l, int root_r){
     tar->curTop++;
     return true;
 }
+
+bool HuffManDestruct(HuffManTree *tar){
+    BinStaticTree_destruct(tar->trees);
+    free(tar->trees);
+    free(tar->roots);
+}
+
+
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_HUFFMANTREEENCODING_H

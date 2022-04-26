@@ -23,13 +23,15 @@ typedef struct StaticNode{
 }_StaticNode, *_pNode;
 
 typedef struct Binary_Tree_Array{
-    _StaticNode *elems;
+    _pNode elems;
     int len;
     int cur;
 } Binary_Tree_Array, *Bin_Tree_Arr, *Bin_Tree_Arr_Node;
 
 bool BinStaticTree_init(Bin_Tree_Arr tar, int total_size){
-    tar->elems = (_pNode) malloc(sizeof(_StaticNode)*(total_size));
+    total_size = (int)sizeof(_StaticNode)*(total_size);
+    _pNode temp = (_pNode) malloc(total_size);
+    tar->elems = temp;
     tar->len = total_size;
     tar->cur = 0;
     tar->elems[0].right = tar->elems[0].left =tar->elems[0].parent = -1;

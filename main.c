@@ -18,7 +18,6 @@
 //#include "External Problems/Os/BankerResourceDispatch/BankerResourceDispatch.h"
 
 int main(){
-//    test_main();
-//    TerminalDisplay();
+    HuffManDisplay("12457879123456678905675310000043121");
     return 0;
 }
