@@ -60,35 +60,51 @@ bool _tree_stk_pop(_TStk tar, tNode* container){
 
 typedef struct TreeQueue{
     struct TreeQueue* next;
+    struct TreeQueue* prior;
     tNode data;
 } _TreeQue, *_tQue;
 
-bool _tree_init_que(_tQue tar){
+bool _tree_enqueue(_tQue tar,tNode container);
 
+bool _tree_dequeue(_tQue tar, tNode* container);
+
+bool _tree_init_que(_tQue tar){
+    tar->next = tar;
+    tar->prior = tar;
     return true;
 }
 
-bool _tree_dequeue(_tQue tar, _tQue* container){
+bool _tree_enqueue(_tQue tar,tNode container){
+    _tQue temp = (_tQue) malloc(sizeof(_TreeQue));
+    temp->prior = tar;
+    temp->next = tar->next;
+    tar->next = temp;
+    temp->next->prior = temp;
+    return true;
+}
+
+bool _tree_dequeue(_tQue tar, tNode* container){
     if(tar->next == tar){
         return false;
     } else{
 //        这边还是只能是修改指针变量指向的地方
-        (*container) = tar->next;
-        tar->next = (*container)->next;
-        return true;
-    }
-}
-
-bool _tree_des_que(_tQue tar){
-    _tQue temp = tar->next;
-    while (tar->next != tar){
-        _tree_dequeue(tar,&temp);
+        (*container) = tar->next->data;
+        _tQue temp = tar->next;
+        tar->next = tar->next->next;
+        tar->next->prior = tar;
         free(temp);
+        return true;
     }
     return true;
 }
 
-bool _tree_enqueue();
+bool _tree_des_que(_tQue tar){
+    tNode temp;
+    while (tar->next != tar){
+        _tree_dequeue(tar,&temp);
+    }
+    return true;
+}
 
 
 
