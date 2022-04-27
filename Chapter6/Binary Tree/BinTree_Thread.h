@@ -5,6 +5,14 @@
 #ifndef DATASTRUCTUREIMPLEMENTINGC_BINTREE_THREAD_H
 #define DATASTRUCTUREIMPLEMENTINGC_BINTREE_THREAD_H
 
+//Too many null pointers in current representation of binary trees
+//n: number of nodes
+//number of non-null links: n-1
+//total links: 2n
+//null links: 2n-(n-1)=n+1
+//Replace these null pointers with some useful “threads”.
+
+
 #include <stdlib.h>
 #include <errno.h>
 #include <stdbool.h>
@@ -54,6 +62,10 @@ bool _ThreadTree_Copy_BinTree(Binary_Tree tar, ThreadBinTree res){
     }
     return true;
 }
+
+// 两个指针，左指针-前线索，右指针后线索
+// 设置一个头结点，头结点左指针指向root，右指针指向遍历结尾
+// 两个dangling指针指向头结点
 
 bool EnThreading_Inorder(){
     return false;

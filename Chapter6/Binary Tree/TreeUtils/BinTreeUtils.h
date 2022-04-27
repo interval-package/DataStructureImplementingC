@@ -29,8 +29,7 @@ bool _tree_init_stk(_TStk tar){
     tar->len = _TREE_STACK_LEN;
     return tar->body;
 }
-
-bool _tree_des_stk(_TStk tar){
+ bool _tree_des_stk(_TStk tar){
     free(tar->body);
     tar->body = NULL;
     tar->top = -1;
@@ -64,9 +63,9 @@ typedef struct TreeQueue{
     tNode data;
 } _TreeQue, *_tQue;
 
-bool _tree_enqueue(_tQue tar,tNode container);
+bool _tree_que_en(_tQue tar, tNode container);
 
-bool _tree_dequeue(_tQue tar, tNode* container);
+bool _tree_que_de(_tQue tar, tNode* container);
 
 bool _tree_init_que(_tQue tar){
     tar->next = tar;
@@ -74,8 +73,13 @@ bool _tree_init_que(_tQue tar){
     return true;
 }
 
-bool _tree_enqueue(_tQue tar,tNode container){
+bool _tree_que_isEmpty(_tQue tar){
+    return tar->next == tar;
+}
+
+bool _tree_que_en(_tQue tar, tNode container){
     _tQue temp = (_tQue) malloc(sizeof(_TreeQue));
+    temp->data = container;
     temp->prior = tar;
     temp->next = tar->next;
     tar->next = temp;
@@ -83,7 +87,7 @@ bool _tree_enqueue(_tQue tar,tNode container){
     return true;
 }
 
-bool _tree_dequeue(_tQue tar, tNode* container){
+bool _tree_que_de(_tQue tar, tNode* container){
     if(tar->next == tar){
         return false;
     } else{
@@ -101,7 +105,7 @@ bool _tree_dequeue(_tQue tar, tNode* container){
 bool _tree_des_que(_tQue tar){
     tNode temp;
     while (tar->next != tar){
-        _tree_dequeue(tar,&temp);
+        _tree_que_de(tar, &temp);
     }
     return true;
 }

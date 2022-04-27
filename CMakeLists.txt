@@ -69,4 +69,6 @@ add_executable(
 
         Chapter6/HuffManTree/HuffManTreeEncoding.h
         Chapter6/HuffManTree/HuffManTreeDecoding.h
-        Chapter6/HuffManTree/HuffManTree.h)
+        Chapter6/HuffManTree/HuffManTree.h
+        "Chapter6/Binary Tree/Rebuild_BinTree/TreeRebuild.h"
+        "Chapter6/Binary Tree/TreeUtils/ModifyTreeLeaves.h")

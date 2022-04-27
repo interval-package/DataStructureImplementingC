@@ -3,6 +3,9 @@
 ## (1)introduction
 ### 1.It's the note I took at my class. 
 It basically contains all the points of our course and homework.
+
+Feel free to copy or clone it.
+
 ### 2.Algorithm
 It may have some algorithm problems, and I'll share my solution of them.
 
@@ -18,6 +21,7 @@ Some OS questions.
 4. String
 5. General List, Arrays and Sparse Matrix
 6. Tree
+7. Graph
 
 ### 2.For Usage
 
@@ -60,9 +64,29 @@ In the first of some data struct, the is some drawback in it.
 
 For some getter type functions, the returns should be the variables but not the "return". The return should deliver the function is finished or not, with bool type.
 
-In chapter6, and after this problem is solved.
+In chapter 6, and after this problem is solved.
+
+We'd define all the functions with return type bool, the returns should be in the parameter.
+
+Let's see an example:
+
+```c
+// old defination, in the chapter 3
+
+ELEMENT_TYPE DeQueue_Sq(psqQue sq);
+
+// after change the method, in the chapter 6
+
+bool _tree_que_de(_tQue tar, tNode* container);
+```
 
 ##### (2) Constructors
+
+#### 3.C Namespace
+
+Finally I'd wrap all the data structure with C namespace.
+
+Actually C doesn't have namespace, but we could use the struct to imitate it.
 
 ### 3.Detail info
 For each Chapter, I'd write a .md file to illustrate the questions of this chapter.
