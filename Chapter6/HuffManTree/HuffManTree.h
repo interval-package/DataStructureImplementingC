@@ -27,9 +27,7 @@ bool CalcCharFreq(const char* tar, pkg* res){
 }
 
 __attribute__((unused)) bool PkgDestruct(pkg* tar){
-    for(int i=0;i<tar->n;i++){
-        free(tar->init);
-    }
+    free(tar->init);
     return true;
 }
 
@@ -42,9 +40,14 @@ bool HuffManDisplay(const char* tar){
     HuffManEncoding(&obj);
     DisplayHuffManStruct(&obj);
 
-//    HuffManDecode_Reverse(&obj);
+    ResContainer container;
+    HuffManDecode_Reverse(&obj, &container);
+    DisplayContainer(&container);
+
     HuffManDecode_Display_Stack(&obj, obj.curTop-1);
 
+
+    ContainerDestruct(&container);
     HuffManDestruct(&obj);
     PkgDestruct(&info);
     return true;

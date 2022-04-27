@@ -14,6 +14,10 @@ typedef struct ResContainer{
     char* res[HUFFMAN_CODE_NUMS];
 }ResContainer;
 
+bool ContainerDestruct(ResContainer*);
+
+bool DisplayContainer(ResContainer*);
+
 __attribute__((unused)) bool HuffManDecode_Display_Stack(HuffManTree* tar, int root);
 
 bool HuffManDecode_Reverse(HuffManTree* tar, ResContainer*);
@@ -39,16 +43,17 @@ __attribute__((unused)) bool HuffManDecode_Display_Stack(HuffManTree* tar, int r
 //    总共访问n个叶子
     while (n){
 //        向左下搜索到最下方
-        printf("-----------------------\n");
-        printf("left searching, start root %d l:%d r:%d\n",root,obj->elems[root].left,obj->elems[root].right);
+
+        printf("-----------------------\n"
+               "left searching, start root %d l:%d r:%d\n",
+               root,obj->elems[root].left,obj->elems[root].right);
+
         while (root>=0 && obj->elems[root].left >= 0){
             printf("%d-",root);
             nodes[i] = root;
             routine[i++] = '0';
             root = obj->elems[root].left;
         }
-        printf("\nend left search, left end root %d l:%d r:%d\n",
-               root,obj->elems[root].left,obj->elems[root].right);
 //        显示当前编码路径
         DisplayAct(routine,i,obj->elems[root].data.tar);
         n--;
@@ -60,18 +65,21 @@ __attribute__((unused)) bool HuffManDecode_Display_Stack(HuffManTree* tar, int r
             if(!i)break;
             root = nodes[--i];
             act = routine[i];
-            printf("trace back,act:%c, cur root %d l:%d r:%d\n",act,root,obj->elems[root].left,obj->elems[root].right);
-//            每次路径退栈，也是反映我们是从左还是右回溯进入根的
+
+//            printf("trace back,act:%c, cur root %d l:%d r:%d\n",act,root,obj->elems[root].left,obj->elems[root].right);
+
+            //            每次路径退栈，也是反映我们是从左还是右回溯进入根的
         }while (act == '1');
 //        当我们一直向上走，如果我们是从左进入根时，认为左树遍历完成，我们就会退出循环，去访问右边
 //        向右移动一次
-        if(obj->elems[root].right<0){
-            continue;
-        }
+
         root = obj->elems[root].right;
         nodes[i] = root;
         routine[i++] = '1';
-        printf("right move, cur root %d l:%d r:%d\n",root,obj->elems[root].left,obj->elems[root].right);
+
+//        printf("right move, cur root %d l:%d r:%d\n",
+//               root,obj->elems[root].left,obj->elems[root].right);
+
     }
     return true;
 }
@@ -83,14 +91,12 @@ bool HuffManDecode_Reverse(HuffManTree* tar, ResContainer* container){
         container->res[i] = (char*) malloc(sizeof(char)*tar->treeNums);
         base = tar->treeNums;
         container->res[i][--base] = '\0';
-        printf("%c:\t",tar->trees->elems[i].data.tar);
         while (tar->trees->elems[cur].parent){
             temp = tar->trees->elems[cur].parent;
             container->res[i][--base] = (cur==tar->trees->elems[temp].left)?'0':'1';
             cur = temp;
         }
         container->res[i][0] = (char)--base;
-        printf("\n");
     }
     return true;
 }
@@ -102,6 +108,20 @@ bool DisplayAct(char* tar, int len, char type){
         tar++;
     }
     printf("\n");
+}
+
+bool ContainerDestruct(ResContainer* tar){
+    for (int i = 0; i < HUFFMAN_CODE_NUMS; ++i) {
+        free(tar->res[i]);
+    }
+    return true;
+}
+
+bool DisplayContainer(ResContainer* tar){
+    for (int i = 0; i < HUFFMAN_CODE_NUMS; ++i) {
+        printf("%c: %s\n",i+HUFFMAN_CODE_BASE_CHAR,&(tar->res[i][(tar->res[i][0])+1]));
+    }
+    return true;
 }
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_HUFFMANTREEDECODING_H

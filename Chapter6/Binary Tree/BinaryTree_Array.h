@@ -29,9 +29,7 @@ typedef struct Binary_Tree_Array{
 } Binary_Tree_Array, *Bin_Tree_Arr, *Bin_Tree_Arr_Node;
 
 bool BinStaticTree_init(Bin_Tree_Arr tar, int total_size){
-    total_size = (int)sizeof(_StaticNode)*(total_size);
-    _pNode temp = (_pNode) malloc(total_size);
-    tar->elems = temp;
+    tar->elems = (_pNode) malloc((int)sizeof(_StaticNode)*(total_size));
     tar->len = total_size;
     tar->cur = 0;
     tar->elems[0].right = tar->elems[0].left =tar->elems[0].parent = -1;
@@ -39,7 +37,7 @@ bool BinStaticTree_init(Bin_Tree_Arr tar, int total_size){
 }
 
 bool BinStaticTree_destruct(Bin_Tree_Arr tar){
-    free(tar->elems);
+    free((tar->elems));
     return true;
 }
 
