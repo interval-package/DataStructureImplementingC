@@ -1,20 +1,24 @@
 cmake_minimum_required(VERSION 3.20)
 project(DataStructureImplementingC C)
 
-set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD 11)
 
 # chapter 1
 #        Chapter1/StuFavouredPolicy.h
 
 add_executable(
 # main
-        DataStructureImplementingC
+        DataStructure_Implementing_C
 
         main.c
         init.c
 
         "Mid Term Examination/MidTermQues.h"
 
+)
+
+add_executable(
+        Chapter2-3
 # chapter 2
         Chapter2/Sequential_List.h
         Chapter2/LinkedList.h Chapter2/StaticLinkedList.h
@@ -35,6 +39,11 @@ add_executable(
         "Chapter3/Experiments/ParkingLot Management/ParkingLot_Management.h"
         "Chapter3/Experiments/Product ManageMent/Product_Management.h"
 
+        Chapter3/main.c
+)
+
+add_executable(
+        Chapter4-5
 # chapter 4
         Chapter4/String.h
         Chapter4/locate_sub.h
@@ -45,6 +54,7 @@ add_executable(
         Chapter5/Sparse_Matrix.h
         "Chapter5/Orthogonal sparse matrix.h"
 
+        Chapter5/main.c
 )
 
 add_executable(
@@ -82,7 +92,7 @@ add_executable(
         Chapter6/HuffManTree/HuffManTree.h
         "Chapter6/Binary Tree/Rebuild_BinTree/TreeRebuild.h"
         "Chapter6/Binary Tree/TreeUtils/ModifyTreeLeaves.h"
-        Chapter6/Chaper6.c
+        Chapter6/main.c
 )
 
 
