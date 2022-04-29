@@ -7,6 +7,7 @@
 
 #include "HuffManTreeEncoding.h"
 #include "HuffManTreeDecoding.h"
+#include <stdio.h>
 
 bool CalcCharFreq(const char* tar, pkg* res){
     int map[HUFFMAN_CODE_NUMS];

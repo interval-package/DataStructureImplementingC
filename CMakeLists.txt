@@ -40,6 +40,7 @@ add_executable(
         "Chapter3/Experiments/Product ManageMent/Product_Management.h"
 
         Chapter3/main.c
+        Chapter7/main.c
 )
 
 add_executable(
@@ -93,6 +94,13 @@ add_executable(
         "Chapter6/Binary Tree/Rebuild_BinTree/TreeRebuild.h"
         "Chapter6/Binary Tree/TreeUtils/ModifyTreeLeaves.h"
         Chapter6/main.c
+)
+
+add_executable(
+        Chapter7
+
+        Chapter7/main.c
+        Chapter7/AdjacentMatrixGraph.h
 )
 
 
