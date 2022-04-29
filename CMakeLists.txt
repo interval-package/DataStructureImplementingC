@@ -3,6 +3,9 @@ project(DataStructureImplementingC C)
 
 set(CMAKE_C_STANDARD 99)
 
+# chapter 1
+#        Chapter1/StuFavouredPolicy.h
+
 add_executable(
 # main
         DataStructureImplementingC
@@ -11,20 +14,6 @@ add_executable(
         init.c
 
         "Mid Term Examination/MidTermQues.h"
-
-# External Problems
-        "External Problems/UnDone/findMedianSortedArrays.h"
-        "External Problems/UnDone/IsMatch_RegulaExpression.h"
-        "External Problems/SelfDivide/SelfDivideNumbers.h"
-        "External Problems/CanReorderDoubled/CanReorderedDoubled.h"
-        "External Problems/RomanToInt/RomanToInt.h"
-        "External Problems/Os/SleepingBarber/Sleeping_Barber.h"
-        "External Problems/Os/IPC/IPC.h"
-        "External Problems/Os/HRRF/HRRF.h"
-        "External Problems/Os/BankerResourceDispatch/BankerResourceDispatch.h"
-
-# chapter 1
-#        Chapter1/StuFavouredPolicy.h
 
 # chapter 2
         Chapter2/Sequential_List.h
@@ -56,7 +45,28 @@ add_executable(
         Chapter5/Sparse_Matrix.h
         "Chapter5/Orthogonal sparse matrix.h"
 
-# chapter 6
+)
+
+add_executable(
+        External_Problems
+
+        # External Problems
+        "External Problems/UnDone/findMedianSortedArrays.h"
+        "External Problems/UnDone/IsMatch_RegulaExpression.h"
+        "External Problems/SelfDivide/SelfDivideNumbers.h"
+        "External Problems/CanReorderDoubled/CanReorderedDoubled.h"
+        "External Problems/RomanToInt/RomanToInt.h"
+        "External Problems/Os/SleepingBarber/Sleeping_Barber.h"
+        "External Problems/Os/IPC/IPC.h"
+        "External Problems/Os/HRRF/HRRF.h"
+        "External Problems/Os/BankerResourceDispatch/BankerResourceDispatch.h"
+        "External Problems/main.c"
+)
+
+add_executable(
+        Chapter6
+
+        # chapter 6
         "Chapter6/Binary Tree/BinaryTree_Link.h"
         Chapter6/Tree_Child_Sibling.h
         "Chapter6/Binary Tree/BinaryTree_Array.h"
@@ -71,4 +81,8 @@ add_executable(
         Chapter6/HuffManTree/HuffManTreeDecoding.h
         Chapter6/HuffManTree/HuffManTree.h
         "Chapter6/Binary Tree/Rebuild_BinTree/TreeRebuild.h"
-        "Chapter6/Binary Tree/TreeUtils/ModifyTreeLeaves.h")
+        "Chapter6/Binary Tree/TreeUtils/ModifyTreeLeaves.h"
+        Chapter6/Chaper6.c
+)
+
+
