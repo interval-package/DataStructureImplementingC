@@ -2,7 +2,7 @@
 // Created by Zza on 2022/4/29.
 //
 
-#include "AdjacentMatrixGraph.h"
+#include "Graph.h"
 
 int main(){
     return 0;

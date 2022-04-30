@@ -100,7 +100,7 @@ add_executable(
         Chapter7
 
         Chapter7/main.c
-        Chapter7/AdjacentMatrixGraph.h
+        Chapter7/Graph.h
 )
 
 
