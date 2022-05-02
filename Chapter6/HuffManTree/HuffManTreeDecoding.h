@@ -6,9 +6,10 @@
 #define DATASTRUCTUREIMPLEMENTINGC_HUFFMANTREEDECODING_H
 
 #include "./HuffManTreeEncoding.h"
+#include <stdio.h>
 
-#define HUFFMAN_CODE_NUMS 10
-#define HUFFMAN_CODE_BASE_CHAR '0'
+#define HUFFMAN_CODE_NUMS 26
+#define HUFFMAN_CODE_BASE_CHAR 'a'
 
 typedef struct ResContainer{
     char* res[HUFFMAN_CODE_NUMS];

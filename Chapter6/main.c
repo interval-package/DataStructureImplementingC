@@ -8,5 +8,6 @@
 //#include "Binary Tree/BinTreeTraverse/BinTreeTraverse.h"
 
 int main(){
-    return 1;
+    HuffManDisplay("bkcauvbyuabkyubvuybauyqpiruqwbnmznbcqwertyuiopasdfghjklzxcvbnm");
+    return 0;
 }

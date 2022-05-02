@@ -2,7 +2,26 @@
 
 ## 一、需求分析
 
+实现货架存储商品。
 
+（⼀）任务
+1. 问题描述：商品货架可以看成⼀个栈，栈顶商品的⽣产⽇期最早，栈底商品的⽣产⽇期最晚。上
+货时，需要倒货架，以保证⽣产⽇期较晚的商品在货架较下的位置。
+2. 基本要求：针对⼀种特定商品，实现上述管理过程。
+3. 实现提示：⽤栈模拟货架和周转空间。
+4. 测试数据：由读者依据软件⼯程的测试技术⾃⼰确定。注意测试边界数据，如空栈。
+
+思考题：怎样将转换后的序列形成相应进制的数据?
+（⼆）规定
+
+1. 输⼊的形式和输⼊值的范围：输⼊的商品数量数据应为ASCII字符；输⼊的⽇期数据如
+“20220419”。
+2. 输出的形式：创建货架后，程序会根据货架容量返回此时可上货情况；若有余量，输⼊上货数量
+与对应的商品⽣产⽇期后，返回货架此时商品摆放情况（从上到下的顺序对应货架从⾥到外的顺
+序）
+3. 程序所能达到的功能，对某种特定的商品，实现对商品的上货，且保证⽣产⽇期较晚的商品在货
+架较下的位置。
+4. 测试数据：现有商品数量5
 
 ## 二、ADT设计
 
@@ -105,6 +124,56 @@ typedef stk Cupboard;
 
 - 因为接口封装较好，调试时未出现明显错误情况。
 - 程序运行稳定性较强。
+
+使用两种测试方式：
+
+分别为使用静态数据，以及人工输入的方式：
+
+```c
+void test_main(){
+    TerminalDisplay();
+
+    int cap = 3;
+    time input[] = {1,2,5,3,-1,-1,-1,
+                    -1,2,3,6,
+                    2,3,7,1,
+                    -14,-1,2, 0};
+//    遇到0就退出, -1代表拿取
+
+    time* cur = input;
+    Cupboard store = CreateStack(cap);
+
+    while (*cur){
+        CupboardAction(store,*cur);
+        CupboardDisplay(store);
+        cur++;
+    }
+
+    DestroyStack(store);
+}
+
+void TerminalDisplay(){
+    printf("input the capacity of store: ");
+    int cap;
+    scanf("%d",&cap);
+    Cupboard store = CreateStack(cap);
+    printf("please input new item:\n"
+           "case -1: pop top\n"
+           "case 0 end process\n"
+           "case pos: tag of the item time\n"
+           "here: \n");
+
+    time container;
+    while (scanf("%d",&container)){
+        if(container){
+            CupboardAction(store,container);
+            CupboardDisplay(store);
+        } else{
+            break;
+        }
+    }
+}
+```
 
 ## 五、运行结果
 
@@ -240,7 +309,7 @@ typedef product ELEMENT_TYPE;
 
 #include "../../Stack.h"
 
-typedef stk Cupboard;
+typedef stk_arr Cupboard;
 
 void CupboardDisplay(Cupboard);
 
@@ -250,7 +319,11 @@ int StoreProduct(Cupboard, time);
 
 int CupboardAction(Cupboard, time);
 
+void TerminalDisplay();
+
 void test_main(){
+    TerminalDisplay();
+
     int cap = 3;
     time input[] = {1,2,5,3,-1,-1,-1,
                     -1,2,3,6,
@@ -268,7 +341,28 @@ void test_main(){
     }
 
     DestroyStack(store);
+}
 
+void TerminalDisplay(){
+    printf("input the capacity of store: ");
+    int cap;
+    scanf("%d",&cap);
+    Cupboard store = CreateStack(cap);
+    printf("please input new item:\n"
+           "case -1: pop top\n"
+           "case 0 end process\n"
+           "case pos: tag of the item time\n"
+           "here: \n");
+
+    time container;
+    while (scanf("%d",&container)){
+        if(container){
+            CupboardAction(store,container);
+            CupboardDisplay(store);
+        } else{
+            break;
+        }
+    }
 }
 
 void CupboardDisplay(Cupboard tar){
@@ -339,8 +433,19 @@ int CupboardAction(Cupboard cap, time tar){
     return 1;
 }
 
+#include "../../../Chapter4/String.h"
+
+int BaseTransform(const char* tar, pStr container){
+    return 1;
+}
+
 #endif //DATASTRUCTUREIMPLEMENTINGC_PRODUCT_MANAGEMENT_H
+
 ```
 
 ## 七、总结
 
+- 实现了基本的商品存储货架的功能。
+- ⾸先初始化⼀个货架栈，输⼊商品数量和⽣产⽇期后，程序会根据货架容量返回此时可上货情况；若已满，程序结束；
+- 若有余量，输⼊上货数量与对应的商品⽣产⽇期后，在栈中查找到该插⼊的位置，出栈以上元素，插⼊新货，进栈刚刚出去的元素（此处⽤到了⼀个临时栈）。
+- 最后，返回货架此时商品摆放情况（从上到下的顺序对应货架从⾥到外的顺序）如果货架不空，则可继续上货，通过⼀个标签判定是否已满，满载则停⽌操作。

@@ -24,7 +24,7 @@ typedef struct ProcessInfo{
 typedef pInfo ELEMENT_TYPE;
 #endif
 
-#include "../../../Chapter2/LinkedList.h"
+#include "../../Chapter2/LinkedList.h"
 
 double CalcHRRF(pInfo* tar, int cur){
     return (cur - tar->enter)/tar->need;

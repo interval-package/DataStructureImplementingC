@@ -40,7 +40,6 @@ add_executable(
         "Chapter3/Experiments/Product ManageMent/Product_Management.h"
 
         Chapter3/main.c
-        Chapter7/main.c
 )
 
 add_executable(
@@ -67,10 +66,10 @@ add_executable(
         "External Problems/SelfDivide/SelfDivideNumbers.h"
         "External Problems/CanReorderDoubled/CanReorderedDoubled.h"
         "External Problems/RomanToInt/RomanToInt.h"
-        "External Problems/Os/SleepingBarber/Sleeping_Barber.h"
-        "External Problems/Os/IPC/IPC.h"
-        "External Problems/Os/HRRF/HRRF.h"
-        "External Problems/Os/BankerResourceDispatch/BankerResourceDispatch.h"
+        "Os/SleepingBarber/Sleeping_Barber.h"
+        "Os/IPC/IPC.h"
+        "Os/HRRF/HRRF.h"
+        "Os/BankerResourceDispatch/BankerResourceDispatch.h"
         "External Problems/main.c"
 )
 

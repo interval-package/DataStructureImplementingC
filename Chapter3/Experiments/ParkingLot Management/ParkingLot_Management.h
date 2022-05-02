@@ -7,6 +7,8 @@
 
 #define PARK_ENHANCED
 
+#include <stdio.h>
+
 #ifndef MAIN_FUNC
 #define MAIN_FUNC
 void test_main();
