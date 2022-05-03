@@ -32,5 +32,53 @@ bool Construct_mGraph(mGraph* graph,int nums){
     }
     return true;
 }
+//======================================================================================================================
+
+typedef struct ArcNode {
+   int adjVex;
+   union {
+       int mark;
+   };
+    int weight;
+   struct ArcNode* next, *sub;
+} ArcNode, *arc;
+
+typedef struct ArcPack{
+    int i,j;
+    int weight;
+} ArcPack;
+
+typedef struct VexNode {
+    char elem;
+    int len;
+    arc first;
+} VexNode, *vex;
+
+typedef struct AdjListGraph {
+    int nums;
+    vex List;
+} AdjListGraph;
+
+// 实际上我也不知道该用什么形式，进行初始化
+bool Init_AdjListGraph(AdjListGraph* tar, int len){
+    tar->nums = len;
+    tar->List = (vex) calloc(len,sizeof(VexNode));
+    return true;
+}
+
+bool AddArc_AdjListGraph(AdjListGraph* tar, ArcPack _Arc){
+//    deep copy the _Arc
+    arc temp = (arc) malloc(sizeof(ArcNode));
+    temp->next = tar->List[_Arc.i].first;
+    temp->adjVex = _Arc.j;
+    temp->weight = _Arc.weight;
+    tar->List[_Arc.i].first = temp;
+    return true;
+}
+
+//======================================================================================================================
+
+// Actions of mGraph
+
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_GRAPH_H

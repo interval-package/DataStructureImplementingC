@@ -14,7 +14,6 @@ add_executable(
         init.c
 
         "Mid Term Examination/MidTermQues.h"
-
 )
 
 add_executable(
@@ -40,6 +39,7 @@ add_executable(
         "Chapter3/Experiments/Product ManageMent/Product_Management.h"
 
         Chapter3/main.c
+        Chapter7/GraphTraverse/BFS.h Chapter7/GraphTraverse/DFS.h
 )
 
 add_executable(
