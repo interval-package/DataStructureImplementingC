@@ -40,7 +40,7 @@ add_executable(
 
         Chapter3/main.c
         Chapter7/GraphTraverse/BFS.h Chapter7/GraphTraverse/DFS.h
-)
+        Chapter7/MinimumCostSpanningTree/PrimAlgorithm.h Chapter7/MinimumCostSpanningTree/KruskalAlgorithm.h Chapter7/leastLenthPath/DijkistraAlgorithm.h Chapter7/leastLenthPath/FolydAlgorithm.h)
 
 add_executable(
         Chapter4-5
