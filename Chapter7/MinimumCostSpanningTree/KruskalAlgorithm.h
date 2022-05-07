@@ -66,7 +66,9 @@ bool Kruskal(mGraph* tar){
             forest[root_1] = root_2;
         }
     }
-
+    free(edges);
+    free(forest);
+    free(AdjVertexes);
     return true;
 }
 
