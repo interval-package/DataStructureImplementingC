@@ -8,7 +8,7 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(
 # main
-        DataStructure_Implementing_C
+        DataStructureImplementingC
 
         main.c
         init.c
@@ -39,8 +39,7 @@ add_executable(
         "Chapter3/Experiments/Product ManageMent/Product_Management.h"
 
         Chapter3/main.c
-        Chapter7/GraphTraverse/BFS.h Chapter7/GraphTraverse/DFS.h
-        Chapter7/MinimumCostSpanningTree/PrimAlgorithm.h Chapter7/MinimumCostSpanningTree/KruskalAlgorithm.h Chapter7/MinimumLenthPath/DijkstraAlgorithm.h Chapter7/MinimumLenthPath/FolydAlgorithm.h)
+)
 
 add_executable(
         Chapter4-5
@@ -100,6 +99,15 @@ add_executable(
 
         Chapter7/main.c
         Chapter7/Graph.h
+
+        Chapter7/GraphTraverse/BFS.h
+        Chapter7/GraphTraverse/DFS.h
+
+        Chapter7/MinimumCostSpanningTree/PrimAlgorithm.h
+        Chapter7/MinimumCostSpanningTree/KruskalAlgorithm.h
+
+        Chapter7/MinimumLenthPath/DijkstraAlgorithm.h
+        Chapter7/MinimumLenthPath/FolydAlgorithm.h
 )
 
 
