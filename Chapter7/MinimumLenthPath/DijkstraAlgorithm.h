@@ -1,0 +1,15 @@
+//
+// Created by Zza on 2022/5/6.
+//
+
+#ifndef DATASTRUCTUREIMPLEMENTINGC_DIJKSTRAALGORITHM_H
+#define DATASTRUCTUREIMPLEMENTINGC_DIJKSTRAALGORITHM_H
+
+#include "../Graph.h"
+
+bool Dijkstra(){
+
+    return true;
+}
+
+#endif //DATASTRUCTUREIMPLEMENTINGC_DIJKSTRAALGORITHM_H

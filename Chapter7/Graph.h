@@ -8,6 +8,10 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#define INF 9999999
+
+#define MAX_WEIGHT 255
+
 #ifndef ELEM
 #define ELEM
 typedef int ELEMENT_TYPE;
@@ -27,9 +31,21 @@ bool Construct_mGraph(mGraph* graph,int nums){
     graph->vNums = nums;
     graph->vertexes = (ELEMENT_TYPE*) malloc(sizeof(ELEMENT_TYPE)*nums);
     graph->adjacentMat = (int**) malloc(sizeof (int*)*nums);
-    for(int i=0;i<nums;i++){
+    for(int i=0, j;i<nums;i++){
         graph->adjacentMat[i] = (int*) malloc(sizeof (int)*nums);
+        for(j=0;j<nums;j++){
+            graph->adjacentMat[i][j] = INF;
+        }
     }
+    return true;
+}
+
+bool Destruct_mGraph(mGraph* tar){
+    for(int i=0;i<tar->vNums;i++){
+        free(tar->adjacentMat[i]);
+    }
+    free((tar->adjacentMat));
+    free(tar->vertexes);
     return true;
 }
 //======================================================================================================================
