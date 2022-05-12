@@ -16,7 +16,10 @@ typedef int ELEMENT_TYPE;
 #endif
 
 typedef struct Binary_Tree{
-    ELEMENT_TYPE data;
+    union {
+        ELEMENT_TYPE data;
+        int size;
+    };
 // def left tree, right tree
     struct Binary_Tree *left, *right;
     struct Binary_Tree *parent;
