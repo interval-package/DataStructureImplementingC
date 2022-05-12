@@ -6,7 +6,7 @@
 #include "./MinimumCostSpanningTree/KruskalAlgorithm.h"
 #include "./MinimumCostSpanningTree/PrimAlgorithm.h"
 #include "./MinimumLengthPath/DijkstraAlgorithm.h"
-#include "./MinimumLengthPath/FolydAlgorithm.h"
+#include "./MinimumLengthPath/FloydAlgorithm.h"
 
 int main(){
     return 0;

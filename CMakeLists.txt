@@ -39,7 +39,7 @@ add_executable(
         "Chapter3/Experiments/Product ManageMent/Product_Management.h"
 
         Chapter3/main.c
-)
+        "Chapter6/Experiment/Traverse/Exp_Traverse.h")
 
 add_executable(
         Chapter4-5
@@ -106,8 +106,8 @@ add_executable(
         Chapter7/MinimumCostSpanningTree/PrimAlgorithm.h
         Chapter7/MinimumCostSpanningTree/KruskalAlgorithm.h
 
-        Chapter7/MinimumLenthPath/DijkstraAlgorithm.h
-        Chapter7/MinimumLenthPath/FolydAlgorithm.h
+        Chapter7/MinimumLengthPath/DijkstraAlgorithm.h
+        Chapter7/MinimumLengthPath/FloydAlgorithm.h
 )
 
 

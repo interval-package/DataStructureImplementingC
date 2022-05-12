@@ -3,11 +3,13 @@
 //
 
 //#include "Tree_Child_Sibling.h"
-#include "HuffManTree/HuffManTree.h"
+//#include "HuffManTree/HuffManTree.h"
 //#include "Binary Tree/BinTree_Thread.h"
 //#include "Binary Tree/BinTreeTraverse/BinTreeTraverse.h"
 
+#include "Experiment/Traverse/Exp_Traverse.h"
+
 int main(){
-    HuffManDisplay("bkcauvbyuabkyubvuybauyqpiruqwbnmznbcqwertyuiopasdfghjklzxcvbnm");
+
     return 0;
 }
