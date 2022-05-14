@@ -69,7 +69,7 @@ __attribute__((unused)) bool HuffManEncoding(HuffManTree* tar){
 __attribute__((unused)) bool Init_HuffMan(HuffManTree* tar, pkg* info){
     tar->trees = (Binary_Tree_Array*)malloc(sizeof(Binary_Tree_Array));
     BinStaticTree_init(tar->trees, 2*info->n-1);
-    tar->treeNums = tar->curTop = tar->trees->cur =info->n;
+    tar->treeNums = tar->curTop = tar->trees->cur = info->n;
     tar->roots = (int*) malloc(sizeof(int)*info->n);
     for(int i=0;i<info->n;i++){
         tar->trees->elems[i].data = info->init[i];

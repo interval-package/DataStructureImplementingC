@@ -39,7 +39,7 @@ add_executable(
         "Chapter3/Experiments/Product ManageMent/Product_Management.h"
 
         Chapter3/main.c
-        "Chapter6/Experiment/Traverse/Exp_Traverse.h")
+        "Chapter6/Experiment/Traverse/Exp_Traverse.h" Chapter6/HuffManTree/Huffman_output.h)
 
 add_executable(
         Chapter4-5
