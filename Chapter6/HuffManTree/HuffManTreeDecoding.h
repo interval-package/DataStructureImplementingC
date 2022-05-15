@@ -40,7 +40,7 @@ __attribute__((unused)) bool HuffManDecode_Display_Stack(HuffManTree* tar, int r
 
     char act;
 
-    int i = 0, n = tar->treeNums;
+    int i = 0, n = tar->elem_num;
 //    总共访问n个叶子
     while (n){
 //        向左下搜索到最下方
@@ -85,12 +85,17 @@ __attribute__((unused)) bool HuffManDecode_Display_Stack(HuffManTree* tar, int r
     return true;
 }
 
+// using reverse method to decoding
+// the code is stored at the rear of the arr
+// we store the head of our coding in the top of the char arr
+// or so call ptr
+// in the type of cast char
 bool HuffManDecode_Reverse(HuffManTree* tar, ResContainer* container){
     int cur,temp,base;
-    for(int i=0;i<tar->treeNums;i++){
+    for(int i=0;i<tar->elem_num; i++){
         cur = i;
-        container->res[i] = (char*) malloc(sizeof(char)*tar->treeNums);
-        base = tar->treeNums;
+        container->res[i] = (char*) malloc(sizeof(char)*tar->elem_num);
+        base = tar->elem_num;
         container->res[i][--base] = '\0';
         while (tar->trees->elems[cur].parent){
             temp = tar->trees->elems[cur].parent;

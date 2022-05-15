@@ -26,7 +26,7 @@ typedef struct HuffManTree{
 //    实际上这里应该自己再重新设置一个
     Bin_Tree_Arr trees;
     int curTop;
-    int treeNums;
+    int elem_num;
     int* roots;
     bool encoded;
 }HuffManTree;
@@ -55,7 +55,7 @@ bool _tree_merge(HuffManTree* tar, int root1, int root2);
 //======================================================================================================================
 
 __attribute__((unused)) bool HuffManEncoding(HuffManTree* tar){
-    int timer = tar->treeNums - 1;
+    int timer = tar->elem_num - 1;
     int cur_tree_l, cur_tree_r;
     while (timer--){
 //        找到最小的两个树，在roots中的位置
@@ -69,7 +69,7 @@ __attribute__((unused)) bool HuffManEncoding(HuffManTree* tar){
 __attribute__((unused)) bool Init_HuffMan(HuffManTree* tar, pkg* info){
     tar->trees = (Binary_Tree_Array*)malloc(sizeof(Binary_Tree_Array));
     BinStaticTree_init(tar->trees, 2*info->n-1);
-    tar->treeNums = tar->curTop = tar->trees->cur = info->n;
+    tar->elem_num = tar->curTop = tar->trees->cur = info->n;
     tar->roots = (int*) malloc(sizeof(int)*info->n);
     for(int i=0;i<info->n;i++){
         tar->trees->elems[i].data = info->init[i];
@@ -87,7 +87,7 @@ bool _find_two_min_tree(HuffManTree* tar, int *min1, int *min2){
     *min1 = *min2 = 0;
     int temp;
 //    root负责记录是树根的结点位置
-    for(int i=1, j=0;i < tar->treeNums;i++){
+    for(int i=1, j=0;i < tar->elem_num; i++){
         temp = tar->roots[i];
         if(temp>=0){
             temp = tar->trees->elems[temp].data.freq;
@@ -116,7 +116,7 @@ bool _tree_merge(HuffManTree* tar, int root_l, int root_r){
 //    printf("with char: %c,%c\n",l.tar,r.tar);
 //    printf("with freq: %d,%d\n",l.freq,r.freq);
 
-    _StaticNode temp = {{'s',l.freq + r.freq},tar->roots[root_l], tar->roots[root_r]};
+    bin_tree_arr_node temp = {{'s', l.freq + r.freq}, tar->roots[root_l], tar->roots[root_r]};
     
     tar->trees->elems[tar->curTop] = temp;
 

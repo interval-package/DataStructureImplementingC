@@ -56,7 +56,7 @@ bool HuffManDisplay(const char* tar){
 
 bool DisplayHuffManStruct(HuffManTree* tar){
     for(int i=0;i<tar->curTop;i++){
-        _StaticNode temp = tar->trees->elems[i];
+        bin_tree_arr_node temp = tar->trees->elems[i];
         printf("id: %d\t"
                "char: %c\t"
                "freq: %d\t"
