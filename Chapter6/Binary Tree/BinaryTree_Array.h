@@ -37,7 +37,7 @@ bool BinStaticTree_init(Bin_Tree_Arr tar, int total_size){
 }
 
 bool BinStaticTree_destruct(Bin_Tree_Arr tar){
-    free((tar->elems));
+//    free((tar->elems));
     return true;
 }
 

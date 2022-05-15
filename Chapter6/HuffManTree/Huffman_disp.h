@@ -2,12 +2,17 @@
 // Created by Zza on 2022/4/25.
 //
 
-#ifndef DATASTRUCTUREIMPLEMENTINGC_HUFFMANTREE_H
-#define DATASTRUCTUREIMPLEMENTINGC_HUFFMANTREE_H
+#ifndef DATASTRUCTUREIMPLEMENTINGC_HUFFMAN_DISP_H
+#define DATASTRUCTUREIMPLEMENTINGC_HUFFMAN_DISP_H
 
 #include "HuffManTreeEncoding.h"
 #include "HuffManTreeDecoding.h"
 #include <stdio.h>
+
+bool CalcCharFreq(const char* tar, pkg* res);
+// this func will calc the freq of each char in a string
+
+//----------------------------------------------------------------------------------------------------------------------
 
 bool CalcCharFreq(const char* tar, pkg* res){
     int map[HUFFMAN_CODE_NUMS];
@@ -27,7 +32,7 @@ bool CalcCharFreq(const char* tar, pkg* res){
     return true;
 }
 
-__attribute__((unused)) bool PkgDestruct(pkg* tar){
+bool PkgDestruct(pkg* tar){
     free(tar->init);
     return true;
 }
@@ -68,4 +73,4 @@ bool DisplayHuffManStruct(HuffManTree* tar){
     return true;
 }
 
-#endif //DATASTRUCTUREIMPLEMENTINGC_HUFFMANTREE_H
+#endif //DATASTRUCTUREIMPLEMENTINGC_HUFFMAN_DISP_H

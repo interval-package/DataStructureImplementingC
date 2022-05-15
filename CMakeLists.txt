@@ -39,7 +39,7 @@ add_executable(
         "Chapter3/Experiments/Product ManageMent/Product_Management.h"
 
         Chapter3/main.c
-        "Chapter6/Experiment/Traverse/Exp_Traverse.h" Chapter6/HuffManTree/Huffman_output.h)
+        Chapter6/HuffManTree/Huffman_wrapper.h)
 
 add_executable(
         Chapter4-5
@@ -86,11 +86,16 @@ add_executable(
         "Chapter6/Binary Tree/TreeUtils/BinTreeUtils.h"
         "Chapter6/Binary Tree/BinTree_Thread.h"
 
-        Chapter6/HuffManTree/HuffManTreeEncoding.h
-        Chapter6/HuffManTree/HuffManTreeDecoding.h
-        Chapter6/HuffManTree/HuffManTree.h
         "Chapter6/Binary Tree/Rebuild_BinTree/TreeRebuild.h"
         "Chapter6/Binary Tree/TreeUtils/ModifyTreeLeaves.h"
+
+        Chapter6/HuffManTree/HuffManTreeEncoding.h
+        Chapter6/HuffManTree/HuffManTreeDecoding.h
+        Chapter6/HuffManTree/Huffman_disp.h
+
+        Chapter6/HuffManTree/Huffman_output.h
+        Chapter6/HuffManTree/Huffman_process.h
+
         Chapter6/main.c
 )
 

@@ -5,7 +5,7 @@
 #ifndef DATASTRUCTUREIMPLEMENTINGC_HUFFMAN_OUTPUT_H
 #define DATASTRUCTUREIMPLEMENTINGC_HUFFMAN_OUTPUT_H
 
-#include "./HuffManTree.h"
+#include "./Huffman_disp.h"
 #include <stdio.h>
 
 // these funcs targeted at save res
@@ -49,7 +49,9 @@ bool Input_Tree_Body(Binary_Tree_Array* tar, FILE* file);
 //----------------------------------------------------------------------------------------------------------------------
 
 // here we try to output result to file
+bool Output_Encoding_Res(ResContainer* tar, FILE* file);
 
+bool Input_Encoding_Res(ResContainer* tar, FILE* file);
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -80,6 +82,23 @@ bool Input_Tree_Body(Binary_Tree_Array* tar, FILE* file){
     fread(tar, sizeof(Binary_Tree_Array),1,file);
     tar->elems = malloc(sizeof(bin_tree_arr_node)*tar->len);
     fread(tar->elems,sizeof(bin_tree_arr_node),tar->len,file);
+    return true;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+bool Output_Encoding_Res(ResContainer* tar, FILE* file){
+    for(int i=0; i < HUFFMAN_CODE_NUMS; i++){
+        fwrite(tar->res[i],sizeof(char)*HUFFMAN_CODE_NUMS,1,file);
+    }
+    return true;
+}
+
+bool Input_Encoding_Res(ResContainer* tar, FILE* file){
+    for(int i=0; i < HUFFMAN_CODE_NUMS; i++){
+        tar->res[i] = malloc(sizeof(char)*HUFFMAN_CODE_NUMS);
+        fread(tar->res[i],sizeof(char)*HUFFMAN_CODE_NUMS,1,file);
+    }
     return true;
 }
 

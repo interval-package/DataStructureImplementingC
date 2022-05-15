@@ -8,8 +8,8 @@
 #include "./HuffManTreeEncoding.h"
 #include <stdio.h>
 
-#define HUFFMAN_CODE_NUMS 26
-#define HUFFMAN_CODE_BASE_CHAR 'a'
+#define HUFFMAN_CODE_NUMS 31
+#define HUFFMAN_CODE_BASE_CHAR 'A'
 
 typedef struct ResContainer{
     char* res[HUFFMAN_CODE_NUMS];
@@ -97,12 +97,13 @@ bool HuffManDecode_Reverse(HuffManTree* tar, ResContainer* container){
         container->res[i] = (char*) malloc(sizeof(char)*tar->elem_num);
         base = tar->elem_num;
         container->res[i][--base] = '\0';
-        while (tar->trees->elems[cur].parent){
+        while (tar->trees->elems[cur].parent>0){
             temp = tar->trees->elems[cur].parent;
             container->res[i][--base] = (cur==tar->trees->elems[temp].left)?'0':'1';
             cur = temp;
         }
-        container->res[i][0] = (char)--base;
+        //
+        container->res[i][0] = (char)base;
     }
     return true;
 }
@@ -125,7 +126,7 @@ bool ContainerDestruct(ResContainer* tar){
 
 bool DisplayContainer(ResContainer* tar){
     for (int i = 0; i < HUFFMAN_CODE_NUMS; ++i) {
-        printf("%c: %s\n",i+HUFFMAN_CODE_BASE_CHAR,&(tar->res[i][(tar->res[i][0])+1]));
+        printf("%c: %s\n",i+HUFFMAN_CODE_BASE_CHAR,&(tar->res[i][(tar->res[i][0])]));
     }
     return true;
 }
