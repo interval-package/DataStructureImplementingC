@@ -7,6 +7,8 @@
 #include "./MinimumCostSpanningTree/PrimAlgorithm.h"
 #include "./MinimumLengthPath/DijkstraAlgorithm.h"
 #include "./MinimumLengthPath/FloydAlgorithm.h"
+#include "GraphTraverse/DFS.h"
+#include "./Generate_Tree/Generate_Tree.h"
 
 int main(){
     return 0;

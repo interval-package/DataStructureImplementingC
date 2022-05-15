@@ -28,6 +28,7 @@ add_executable(
         Chapter2/Questions/City_Management/CityManagement.h
 
 # chapter 3
+        Chapter3/main.c
         Chapter3/Stack.h Chapter3/Queue.h
         Chapter3/Questions/RPN/RPN.h Chapter3/TwinStack.h
         Chapter3/Questions/ParenthesesProblem/Parentheses.h
@@ -37,9 +38,7 @@ add_executable(
 
         "Chapter3/Experiments/ParkingLot Management/ParkingLot_Management.h"
         "Chapter3/Experiments/Product ManageMent/Product_Management.h"
-
-        Chapter3/main.c
-        Chapter6/HuffManTree/Huffman_wrapper.h)
+)
 
 add_executable(
         Chapter4-5
@@ -95,6 +94,8 @@ add_executable(
 
         Chapter6/HuffManTree/Huffman_output.h
         Chapter6/HuffManTree/Huffman_process.h
+
+        Chapter6/HuffManTree/Huffman_wrapper.h
 
         Chapter6/main.c
 )

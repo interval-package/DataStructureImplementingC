@@ -94,7 +94,16 @@ bool AddArc_AdjListGraph(AdjListGraph* tar, ArcPack _Arc){
 
 //======================================================================================================================
 
-// Actions of mGraph
+typedef struct in_arc{
+    int rear;
+    int head;
+    int wright;
+} in_arc;
+
+bool Add_Tree_Arc(mGraph* tar, in_arc info){
+    tar->adjacentMat[info.rear][info.head] = info.wright;
+    return true;
+}
 
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_GRAPH_H
