@@ -7,8 +7,9 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdio.h>
 
-#define INF 9999999
+#define INF 999
 
 #define MAX_WEIGHT 255
 
@@ -17,6 +18,13 @@
 typedef int ELEMENT_TYPE;
 #endif
 
+typedef struct Edge_Tuple{
+    int head;
+    int rear;
+    int weight;
+}Edge_Tuple;
+
+//======================================================================================================================
 typedef struct Graph_Matrix{
     int vNums;
     ELEMENT_TYPE *vertexes;
@@ -48,6 +56,22 @@ bool Destruct_mGraph(mGraph* tar){
     free(tar->vertexes);
     return true;
 }
+
+bool Disp_mGraph(const mGraph* tar){
+    printf("#\t");
+    for(int i=0; i<tar->vNums; i++){
+        printf("%d\t", i);
+    }
+    for(int i=0; i<tar->vNums; i++){
+        printf("%d:\t",i);
+        for (int j = 0; j < tar->vNums; ++j) {
+            printf("%d\t", tar->adjacentMat[i][j]);
+        }
+        printf("\n");
+    }
+    return true;
+}
+
 //======================================================================================================================
 
 typedef struct ArcNode {
@@ -92,18 +116,37 @@ bool AddArc_AdjListGraph(AdjListGraph* tar, ArcPack _Arc){
     return true;
 }
 
-//======================================================================================================================
-
-typedef struct in_arc{
-    int rear;
-    int head;
-    int wright;
-} in_arc;
-
-bool Add_Tree_Arc(mGraph* tar, in_arc info){
-    tar->adjacentMat[info.rear][info.head] = info.wright;
+bool Disp_adjList_graph(const AdjListGraph* tar){
+    arc temp;
+    for(int i=0; i<tar->nums; i++){
+        printf("%d:\t",i);
+        temp = tar->List[i].first;
+        while (temp){
+            printf("-(%d)>%d\t",temp->weight,temp->adjVex);
+            temp = temp->next;
+        }
+        printf("\n");
+    }
     return true;
 }
 
+//======================================================================================================================
+
+bool Add_Tree_Arc_Mat(mGraph* tar, Edge_Tuple info){
+    tar->adjacentMat[info.rear][info.head] = info.weight;
+    return true;
+}
+
+// actually we have two method of add tree nodes
+bool Add_Tree_Arc_List(AdjListGraph* tar, Edge_Tuple info){
+    arc temp = malloc(sizeof(ArcNode));
+    temp->weight = info.weight;
+    temp->adjVex = info.head;
+    temp->next = tar->List[info.rear].first->next;
+    tar->List[info.head].first = temp;
+    return true;
+}
+
+//======================================================================================================================
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_GRAPH_H

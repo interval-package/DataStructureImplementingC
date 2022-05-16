@@ -11,7 +11,11 @@
 
 bool Search_Min(const int* arr, const bool* vis, int len, int* res);
 
-bool prim(AdjListGraph* tar, int start){
+void Disp_prim_temp_int(int*tar, int len);
+
+void Disp_prim_temp_bool(bool*tar, int len);
+
+bool prim(AdjListGraph* tar, int start, int** res){
     int* low_cost = malloc(sizeof(int)*tar->nums);
     int* adj_vex = malloc(sizeof(int)*tar->nums);
     bool* vis = malloc(sizeof(bool)*tar->nums);
@@ -31,12 +35,17 @@ bool prim(AdjListGraph* tar, int start){
     }
 
     for(int _timer = 0; _timer<tar->nums; _timer++){
+        Disp_prim_temp_bool(vis, tar->nums);
+        Disp_prim_temp_int(low_cost,tar->nums);
+        Disp_prim_temp_int(adj_vex,tar->nums);
+
         Search_Min(low_cost,vis,tar->nums,&temp);
 //        先找到目前集到
         vis[temp] = true;
 //        跟新对外环境
         temp_arc = tar->List[start].first;
         while (temp_arc){
+
             if(!vis[temp_arc->adjVex] && temp_arc->weight < low_cost[temp_arc->adjVex]){
                 adj_vex[temp_arc->adjVex] = temp;
                 low_cost[temp_arc->adjVex] = temp_arc->weight;
@@ -46,7 +55,7 @@ bool prim(AdjListGraph* tar, int start){
     }
 
     free(low_cost);
-    free(adj_vex);
+    *res = adj_vex;
     free(vis);
     return true;
 }
@@ -62,6 +71,18 @@ bool Search_Min(const int* arr, const bool* vis, int len, int* res){
     }
     *res = temp;
     return true;
+}
+
+void Disp_prim_temp_bool(bool*tar, int len){
+
+}
+
+void Disp_prim_temp_int(int*tar, int len){
+
+}
+
+void Disp_prim_res(AdjListGraph* tar, int start, int** res){
+
 }
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_PRIMALGORITHM_H

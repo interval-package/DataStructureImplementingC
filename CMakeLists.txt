@@ -38,7 +38,7 @@ add_executable(
 
         "Chapter3/Experiments/ParkingLot Management/ParkingLot_Management.h"
         "Chapter3/Experiments/Product ManageMent/Product_Management.h"
-)
+        "Chapter7/Experiment/build mst/Exp_MST.h")
 
 add_executable(
         Chapter4-5

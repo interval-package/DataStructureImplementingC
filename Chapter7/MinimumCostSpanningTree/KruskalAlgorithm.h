@@ -11,12 +11,6 @@
 
 #include <stdbool.h>
 
-typedef struct Edge_Tuple{
-    int prior;
-    int rear;
-    int weight;
-}Edge_Tuple;
-
 bool TupleSorter(Edge_Tuple*, int);
 
 // 有一个前提，必须是连通图，不然会把空边给连上
@@ -33,7 +27,7 @@ bool Kruskal(mGraph* tar){
         forest[i] = -1;
         AdjVertexes[i] = -1;
         for(j=0;j<tar->vNums;j++){
-            edges[i*tar->vNums+j].prior = i;
+            edges[i*tar->vNums+j].head = i;
             edges[i*tar->vNums+j].rear = j;
             edges[i*tar->vNums+j].weight = tar->adjacentMat[i][j];
         }
@@ -44,7 +38,7 @@ bool Kruskal(mGraph* tar){
     int root_1, root_2;
 
     for (int i=0, j=0; i < tar->vNums-1; ++i, ++j) {
-        root_1 = edges[j].prior;
+        root_1 = edges[j].head;
         root_2 = edges[j].rear;
 //        回溯集合根
         while (forest[root_1]>0){
@@ -61,7 +55,7 @@ bool Kruskal(mGraph* tar){
 //            记录边-记录边标号
 //            AdjVertexes[i] = j;
 //            记录边-亲子方式记录
-            AdjVertexes[edges->rear] = edges->prior;
+            AdjVertexes[edges->rear] = edges->head;
 //            合并集合
             forest[root_1] = root_2;
         }
