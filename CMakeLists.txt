@@ -38,7 +38,7 @@ add_executable(
 
         "Chapter3/Experiments/ParkingLot Management/ParkingLot_Management.h"
         "Chapter3/Experiments/Product ManageMent/Product_Management.h"
-        "Chapter7/Experiment/build mst/Exp_MST.h" "Chapter7/Experiment/Tourist guide/Tourist_Guide.h" Chapter7/MinimumLengthPath/Hamiltonian_Algorithm.h "Chapter7/Experiment/Traveling Salesman Problem/TSP.h")
+        "Chapter7/Experiment/build mst/Exp_MST.h" "Chapter7/Experiment/Tourist guide/Tourist_Guide.h" Chapter7/MinimumLengthPath/Hamiltonian_Algorithm.h "Chapter7/Experiment/Traveling Salesman Problem/TSP.h" "Chapter7/Experiment/Graph Traverse/Exp_Traverse.h")
 
 add_executable(
         Chapter4-5
