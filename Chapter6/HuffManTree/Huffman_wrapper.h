@@ -5,9 +5,12 @@
 #ifndef DATASTRUCTUREIMPLEMENTINGC_HUFFMAN_WRAPPER_H
 #define DATASTRUCTUREIMPLEMENTINGC_HUFFMAN_WRAPPER_H
 
+#define BUFFER_LEN 2000
+
 #include "Huffman_output.h"
 #include "Huffman_disp.h"
 #include "Huffman_process.h"
+#include "HuffManTreeEncoding.h"
 
 bool Huff_Man_Replace(ResContainer* projection, const char* tar, char* buffer, int len){
 
@@ -59,5 +62,57 @@ bool Huff_Rebuild(const HuffManTree * project, const char* tar, char* res, int r
         *++res = '\0';
     return true;
 };
+
+int main_2(){
+
+    char* str = "HERE_IS_THE_EXAMPLE_STR_FOR_THE_HUFFMAN_TREE_ENCODING"
+                "[THIS_FUNC_ONLY_READS_UPPER_CASE_WORDS_AND_SOME_OTHERS"
+                "AND_NOT^"
+                "[][][]\\[][]\\";
+
+    Huff_Man_Generate_Write(str);
+
+    Huff_Man_Generate_Read();
+
+    return 0;
+}
+
+int main_1(){
+    char* str = "HERE_IS_THE_EXAMPLE_STR_FOR_THE_HUFFMAN_TREE_ENCODING"
+                "[THIS_FUNC_ONLY_READS_UPPER_CASE_WORDS_AND_SOME_OTHERS"
+                "AND_NOT^"
+                "[][][]\\[][]\\";
+
+    char buffer[BUFFER_LEN];
+    buffer[BUFFER_LEN-1] = '\0';
+    char res[BUFFER_LEN];
+    res[BUFFER_LEN-1]='\0';
+
+    pkg info;
+    CalcCharFreq(str,&info);
+    HuffManTree obj;
+    Init_HuffMan(&obj,&info);
+    HuffManEncoding(&obj);
+
+    ResContainer container;
+    HuffManDecode_Reverse(&obj, &container);
+    DisplayContainer(&container);
+
+    printf(str);
+    printf("\n");
+
+    Huff_Man_Replace(&container,str,buffer,BUFFER_LEN);
+    printf(buffer);
+
+    Huff_Rebuild(&obj,buffer,res,BUFFER_LEN);
+
+    printf("\n");
+    printf(res);
+
+    ContainerDestruct(&container);
+    HuffManDestruct(&obj);
+    PkgDestruct(&info);
+    return 0;
+}
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_HUFFMAN_WRAPPER_H

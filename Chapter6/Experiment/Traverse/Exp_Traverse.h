@@ -16,15 +16,15 @@ typedef char ELEMENT_TYPE;
 #include <stdio.h>
 
 // 使用递归的方式
-bool Generate_tree_pre(const char* info, Binary_Tree* head){
-    if(*info == '#'){
+bool Generate_tree_pre(char** info, Binary_Tree* head){
+    if(**info == '#'){
         *head = NULL;
-        info++;
+        (*info)++;
         return true;
     } else{
         *head = malloc(sizeof(TreeNode));
-        (*head)->data = *info;
-        info++;
+        (*head)->data = **info;
+        (*info)++;
     }
     Generate_tree_pre(info, &(*head)->left);
     Generate_tree_pre(info, &(*head)->right);
@@ -32,10 +32,10 @@ bool Generate_tree_pre(const char* info, Binary_Tree* head){
 }
 
 void Display_Node(pTreeNode tar){
-    printf("%s",tar->data);
+    printf("%c",tar->data);
 }
 
-bool PreOrderTraverse(pTreeNode root, void* action(pTreeNode)){
+bool PreOrderTraverse(pTreeNode root, void (*action)(pTreeNode)){
     if(NULL == root)
         return true;
     action(root);
@@ -44,7 +44,7 @@ bool PreOrderTraverse(pTreeNode root, void* action(pTreeNode)){
     return true;
 }
 
-bool MidOrderTraverse(pTreeNode root, void* action()){
+bool MidOrderTraverse(pTreeNode root, void (*action)(pTreeNode)){
     if(NULL == root)
         return true;
     MidOrderTraverse(root->left, action);
@@ -53,7 +53,7 @@ bool MidOrderTraverse(pTreeNode root, void* action()){
     return true;
 }
 
-bool LastOrderTraverse(pTreeNode root, void* action()){
+bool LastOrderTraverse(pTreeNode root, void (*action)(pTreeNode)){
     if(NULL == root)
         return true;
     LastOrderTraverse(root->left, action);
@@ -65,11 +65,17 @@ bool LastOrderTraverse(pTreeNode root, void* action()){
 
 void test_traverse(){
     Binary_Tree tree;
-    Generate_tree_pre("ABC##DE#G##F###",&tree);
+    char * str = "ABC##DE#G##F###";
+    char ** temp = &str;
+    printf(str);
+    printf("\n");
+    Generate_tree_pre(temp,&tree);
     printf("preorder: ");
     PreOrderTraverse(tree,Display_Node);
     printf("\ninorder: ");
+    MidOrderTraverse(tree,Display_Node);
     printf("\npostorder: ");
+    LastOrderTraverse(tree,Display_Node);
 }
 
 

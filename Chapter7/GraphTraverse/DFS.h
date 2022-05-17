@@ -10,4 +10,8 @@
 
 bool DFS();
 
+bool DFS(){
+    return true;
+}
+
 #endif //DATASTRUCTUREIMPLEMENTINGC_DFS_H

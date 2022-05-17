@@ -19,8 +19,8 @@ typedef int ELEMENT_TYPE;
 #endif
 
 typedef struct Edge_Tuple{
-    int head;
     int rear;
+    int head;
     int weight;
 }Edge_Tuple;
 
@@ -117,6 +117,7 @@ bool AddArc_AdjListGraph(AdjListGraph* tar, ArcPack _Arc){
 }
 
 bool Disp_adjList_graph(const AdjListGraph* tar){
+    printf("show the tree struct:\n");
     arc temp;
     for(int i=0; i<tar->nums; i++){
         printf("%d:\t",i);
@@ -142,8 +143,12 @@ bool Add_Tree_Arc_List(AdjListGraph* tar, Edge_Tuple info){
     arc temp = malloc(sizeof(ArcNode));
     temp->weight = info.weight;
     temp->adjVex = info.head;
-    temp->next = tar->List[info.rear].first->next;
-    tar->List[info.head].first = temp;
+    if(tar->List[info.rear].first){
+        temp->next = tar->List[info.rear].first;
+    } else{
+        temp->next = NULL;
+    }
+    tar->List[info.rear].first = temp;
     return true;
 }
 

@@ -66,4 +66,8 @@ bool Kruskal(mGraph* tar){
     return true;
 }
 
+bool TupleSorter(Edge_Tuple* tar, int pos){
+    return true;
+}
+
 #endif //DATASTRUCTUREIMPLEMENTINGC_KRUSKALALGORITHM_H

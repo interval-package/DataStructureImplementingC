@@ -25,10 +25,4 @@ typedef struct Binary_Tree{
     struct Binary_Tree *parent;
 } *Binary_Tree, TreeNode,*pTreeNode;
 
-// 已知前序、中序遍历结果，还原二叉树
-
-// 层序遍历
-
-
-
 #endif //DATASTRUCTUREIMPLEMENTINGC_BINARYTREE_H
