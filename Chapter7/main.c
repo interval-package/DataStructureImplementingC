@@ -8,9 +8,9 @@
 //#include "./MinimumLengthPath/DijkstraAlgorithm.h"
 //#include "./MinimumLengthPath/FloydAlgorithm.h"
 //#include "GraphTraverse/DFS.h"
-#include "./Experiment/build mst/Exp_MST.h"
-
+//#include "./Experiment/build mst/Exp_MST.h"
+#include "./Experiment/Tourist guide/Tourist_Guide.h"
 int main(){
-    Mst_main_prim();
+
     return 0;
 }
