@@ -31,11 +31,11 @@ typedef struct Graph_Matrix{
     int** adjacentMat;
 } mGraph;
 
-bool Construct_mGraph(mGraph*,int);
+bool Init_mGraph(mGraph *graph, int nums);
 
 bool Destruct_mGraph(mGraph*);
 
-bool Construct_mGraph(mGraph* graph,int nums){
+bool Init_mGraph(mGraph* graph, int nums){
     graph->vNums = nums;
     graph->vertexes = (ELEMENT_TYPE*) malloc(sizeof(ELEMENT_TYPE)*nums);
     graph->adjacentMat = (int**) malloc(sizeof (int*)*nums);
@@ -131,6 +131,19 @@ bool Disp_adjList_graph(const AdjListGraph* tar){
         printf("\n");
     }
     return true;
+}
+
+bool Destruct_adjList_graph(AdjListGraph* tar){
+    arc temp, temp_2;
+    for (int i = 0; i < tar->nums; ++i) {
+        temp = tar->List[i].first;
+        while (temp){
+            temp_2 = temp->next;
+            free(temp);
+            temp = temp_2;
+        }
+    }
+    free(tar->List);
 }
 
 //======================================================================================================================
