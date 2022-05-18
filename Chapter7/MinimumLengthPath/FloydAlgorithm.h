@@ -39,7 +39,10 @@ bool Floyd(mGraph* tar){
 
     DesMat(paths,tar->vNums);
     DesMat(dist,tar->vNums);
+    return true;
+}
 
+bool Solve_Floyd(int** mat, int start, int end){
     return true;
 }
 

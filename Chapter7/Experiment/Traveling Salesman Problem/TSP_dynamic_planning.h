@@ -104,7 +104,7 @@ int tsp_main_dym()
             {8,3,INF,4,3},
             {9,5,3,20,INF}
     };
-    TSP_Dynamic(dp, g);
+
     printf("the min is %d\n",dp[0][M-1]);
     getPath(dp,g,path);
     printPath(path);

@@ -13,7 +13,7 @@
 //======================================================================================================================
 // interface functions
 
-void Tourist_guide_interface();
+int Tourist_guide_interface();
 
 void Tourist_guide_actions();
 
@@ -34,12 +34,59 @@ void Tourist_show_map();
 #define VEX_NUM 5
 
 void touring(){
-    tsp_main_dym();
+    int opt;
+    mGraph obj;
+    int path[N];
+    int dp[N][M];
+    int g[N][N] = {
+            {INF,3,INF,8,9},
+            {3,INF,3,10,5},
+            {INF,3,INF,4,3},
+            {8,3,INF,4,3},
+            {9,5,3,20,INF}
+    };
+    TSP_Dynamic(dp, g);
 
+    Init_mGraph(&obj, N);
+
+    copy_mat_mGraph((int**)g,N,&obj);
+
+    opt = Tourist_guide_interface();
+
+    switch (opt) {
+        case 1:{
+            Disp_mGraph(&obj);
+            break;
+        }
+        case 2:{
+            printf("please input your destination: ");
+            scanf("%d",&opt);
+//            解析Floyd矩阵
+
+            break;
+        }
+        case 3:{
+            printf("sad");
+            break;
+        }
+        default:{
+            printf("undef command\n");
+        }
+    }
 }
 
 //======================================================================================================================
+int Tourist_guide_interface(){
+    int res;
 
+    printf("commands:\n"
+           "1: show graph\n"
+           "2: show min path\n"
+           "3: show routine\n");
+
+    scanf("%d",&res);
+    return res;
+}
 
 //======================================================================================================================
 
