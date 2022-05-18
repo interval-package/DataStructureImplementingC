@@ -8,7 +8,7 @@
 #include "../../Graph.h"
 #include "../../MinimumLengthPath/FloydAlgorithm.h"
 #include "../../MinimumLengthPath/Hamiltonian_Algorithm.h"
-#include "../Traveling Salesman Problem/TSP.h"
+#include "../Traveling Salesman Problem/TSP_dynamic_planning.h"
 
 //======================================================================================================================
 // interface functions
@@ -34,13 +34,7 @@ void Tourist_show_map();
 #define VEX_NUM 5
 
 void touring(){
-    int init_data[VEX_NUM][VEX_NUM] = {
-            {INF,3,INF,8,9},
-            {3,INF,3,10,5},
-            {INF,3,INF,4,3},
-            {8,3,INF,4,3},
-            {9,5,3,20,INF}
-    };
+    tsp_main_dym();
 
 }
 

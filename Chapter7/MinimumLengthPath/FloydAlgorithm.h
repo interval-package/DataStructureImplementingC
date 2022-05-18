@@ -43,7 +43,7 @@ bool Floyd(mGraph* tar){
     return true;
 }
 
-bool CopyPathMat(mGraph* tar, int** newMat){
+bool CopyDistMat(mGraph* tar, int** newMat){
     newMat = (int**)malloc(sizeof(int*)*tar->vNums);
     for (int i = 0; i < tar->vNums; ++i) {
         newMat[i] = (int*)malloc(sizeof(int)*tar->vNums);
@@ -54,7 +54,7 @@ bool CopyPathMat(mGraph* tar, int** newMat){
     return true;
 }
 
-bool CopyDistMat(mGraph* tar, int** newMat){
+bool CopyPathMat(mGraph* tar, int** newMat){
     newMat = (int**)malloc(sizeof(int*)*tar->vNums);
     for (int i = 0; i < tar->vNums; ++i) {
         newMat[i] = (int*)malloc(sizeof(int)*tar->vNums);

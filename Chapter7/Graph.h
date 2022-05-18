@@ -167,6 +167,15 @@ bool Add_Tree_Arc_List(AdjListGraph* tar, Edge_Tuple info){
     return true;
 }
 
+bool copy_mat_mGraph(int **res,int vex, mGraph *tar){
+    for (int i = 0; i < vex; ++i) {
+        for (int j = 0; j < vex; ++j) {
+            tar->adjacentMat[i][j] = res[i][j];
+        }
+    }
+    return true;
+}
+
 //======================================================================================================================
 
 #endif //DATASTRUCTUREIMPLEMENTINGC_GRAPH_H
