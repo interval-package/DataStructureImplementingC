@@ -34,7 +34,7 @@ bool BFS_ListComponent(AdjListGraph* tar,int i,int* visited){
         tempArc = tar->List[node].first;
         while (tempArc){
             if(!visited[tempArc->adjVex]){
-                visited[tempArc->adjVex] = 1;
+//                visited[tempArc->adjVex] = 1;
                 que[tail] = tempArc->adjVex;
                 tail = (tail+1)%len;
             }
