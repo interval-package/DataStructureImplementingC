@@ -58,10 +58,12 @@ bool Destruct_mGraph(mGraph* tar){
 }
 
 bool Disp_mGraph(const mGraph* tar){
+    printf("show the mat struct:\n");
     printf("#\t");
     for(int i=0; i<tar->vNums; i++){
         printf("%d\t", i);
     }
+    printf("\n");
     for(int i=0; i<tar->vNums; i++){
         printf("%d:\t",i);
         for (int j = 0; j < tar->vNums; ++j) {
@@ -117,7 +119,7 @@ bool AddArc_AdjListGraph(AdjListGraph* tar, ArcPack _Arc){
 }
 
 bool Disp_adjList_graph(const AdjListGraph* tar){
-    printf("show the tree struct:\n");
+    printf("show the graph struct:\n");
     arc temp;
     for(int i=0; i<tar->nums; i++){
         printf("%d:\t",i);

@@ -13,6 +13,6 @@
 #include "./Experiment/Graph Traverse/Exp_Traverse.h"
 
 int main(){
-
+    traverse_main();
     return 0;
 }

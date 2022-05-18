@@ -16,15 +16,11 @@ bool BFS_AdjListGraph(AdjListGraph* tar);
 // BFS would use the que
 
 bool BFS_ListComponent(AdjListGraph* tar,int i,int* visited){
+    printf("start to bfs!\n");
     int len = tar->nums + 1;
     int *que = (int*)malloc(sizeof(int)*(len));
-
-    int head = 0 ,tail = 0;
-
+    int head = 0 ,tail = 0, node;
     que[tail++] = i;
-
-    int node;
-
     arc tempArc;
 
     while ((tail - head + len)%len){
@@ -35,6 +31,7 @@ bool BFS_ListComponent(AdjListGraph* tar,int i,int* visited){
         while (tempArc){
             if(!visited[tempArc->adjVex]){
 //                visited[tempArc->adjVex] = 1;
+                printf("%d-(%d)>%d\n",node,tempArc->weight,tempArc->adjVex);
                 que[tail] = tempArc->adjVex;
                 tail = (tail+1)%len;
             }

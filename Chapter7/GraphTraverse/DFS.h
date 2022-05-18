@@ -11,6 +11,7 @@
 bool DFS_Mat(mGraph*,int,int*);
 
 bool DFS_Mat(mGraph* tar,int start ,int* visited){
+    printf("start to dfs!\n");
     int *stack = (int*) malloc(sizeof(int)*tar->vNums);
     int top = 0, cur = start, temp;
     stack[top++] = start;
@@ -22,7 +23,7 @@ bool DFS_Mat(mGraph* tar,int start ,int* visited){
 //                search deeper
                 stack[top++] = i;
 //                update current pos, together visit it
-                printf("%d-(%d)>%d",cur,tar->adjacentMat[cur][i],i);
+                printf("%d-(%d)>%d\n",cur,tar->adjacentMat[cur][i],i);
                 cur = i;
                 visited[cur] = 1;
                 break;

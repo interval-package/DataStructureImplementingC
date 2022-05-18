@@ -31,8 +31,10 @@ void traverse_main(){
             {6,3,5},
             {3,1,4},
             {4,1,1},
+            {1,2,12},
             {1,4,3},
             {4,3,2},
+            {2,6,3},
             {3,4,7},
             {4,6,8},
             {0,7,4},
@@ -46,10 +48,20 @@ void traverse_main(){
         temp++;
     }
 
-    int* vis[V_NUMS];
+    int vis[V_NUMS];
+    for (int i = 0; i < V_NUMS; ++i) {
+        vis[i] = 0;
+    }
 
-    DFS_Mat(&d_graph,0,(int*)vis);
+    Disp_mGraph(&d_graph);
+    DFS_Mat(&d_graph,0,vis);
 
+
+    for (int i = 0; i < V_NUMS; ++i) {
+        vis[i] = 0;
+    }
+    Disp_adjList_graph(&b_graph);
+    BFS_ListComponent(&b_graph,0,vis);
 }
 
 
