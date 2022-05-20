@@ -94,6 +94,8 @@ int main_1(){
     Init_HuffMan(&obj,&info);
     HuffManEncoding(&obj);
 
+    DisplayHuffManStruct(&obj);
+
     ResContainer container;
     HuffManDecode_Reverse(&obj, &container);
     DisplayContainer(&container);
