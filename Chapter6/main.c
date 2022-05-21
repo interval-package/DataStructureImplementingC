@@ -10,6 +10,6 @@
 
 
 int main(){
-    main_2();
+    main_1();
     return 0;
 }

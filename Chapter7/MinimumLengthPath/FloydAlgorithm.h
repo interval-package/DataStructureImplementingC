@@ -9,11 +9,16 @@
 
 
 bool CopyPathMat(mGraph* tar, int** newMat);
+// construct the path mat for a graph
 
 bool CopyDistMat(mGraph* tar, int** newMat);
+// construct the dist mat for a graph
+// actually it's a normal copy
 
 bool DesMat(int** tarMat, int);
 
+// core function for floyd algorithm
+// get a floyd mat of minial routine
 bool Floyd(mGraph* tar){
 
 //    路径矩阵
