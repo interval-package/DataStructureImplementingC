@@ -69,7 +69,7 @@ add_executable(
         "Os/HRRF/HRRF.h"
         "Os/BankerResourceDispatch/BankerResourceDispatch.h"
         "External Problems/main.c"
-)
+        "External Problems/Examination/Calc_num.h")
 
 add_executable(
         Chapter6
@@ -85,7 +85,7 @@ add_executable(
         "Chapter6/Binary Tree/TreeUtils/BinTreeUtils.h"
         "Chapter6/Binary Tree/BinTree_Thread.h"
 
-        "Chapter6/Binary Tree/Rebuild_BinTree/TreeRebuild.h"
+#        "Chapter6/Binary Tree/Rebuild_BinTree/TreeRebuild.h"
         "Chapter6/Binary Tree/TreeUtils/ModifyTreeLeaves.h"
 
         Chapter6/HuffManTree/HuffManTreeEncoding.h
