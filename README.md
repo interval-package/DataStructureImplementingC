@@ -99,3 +99,9 @@ What's more it may contain my experiment report(the class required.)
 My code may be not that good, but I' m looking to improvement.
 
 And I'm glad to share my understanding of this art and make some friends.
+
+------
+
+This Project already ended.
+
+For me, it's badly  formatted and not work the best on some scene. However I hope this repo could help any starter who like me at that time to quickly grow up. 
